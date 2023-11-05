@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class PlayerInputsHandlerCC : MonoBehaviour
+public class PlayerInputHandlerCC : MonoBehaviour
 {
-    private FPMovementControllerCC movementController;
-    private LookController lookController;
+    private PlayerMovement movementController;
+    //private LookController lookController;
     private ShootController shootController;
 
 
     private void Start()
     {
-        movementController = GetComponent<FPMovementControllerCC>();
-        lookController = GetComponentInChildren<LookController>();
+        movementController = GetComponent<PlayerMovement>();
+        //lookController = GetComponentInChildren<LookController>();
         shootController = GetComponentInChildren<ShootController>();
     }
 
@@ -30,9 +30,5 @@ public class PlayerInputsHandlerCC : MonoBehaviour
         float xMovement = Input.GetAxis("Horizontal");
         float zMovement = Input.GetAxis("Vertical");
         movementController?.SetMoveDirection(new Vector3(xMovement, 0, zMovement));
-
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-        lookController?.SetLookVector(new Vector2(mouseX, mouseY));
     }
 }
