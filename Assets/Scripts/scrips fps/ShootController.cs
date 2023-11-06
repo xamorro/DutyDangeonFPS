@@ -37,7 +37,8 @@ public class ShootController : MonoBehaviour
 
             if (hit.transform.CompareTag("Enemigo"))
             {
-                Destroy(hit.transform.gameObject);
+                Enemics target = hit.transform.GetComponent<Enemics>();
+                target.DañoRecibido(4);
             }
 
             //if(hit.transform.TryGetComponent(out Enemy enemic))
