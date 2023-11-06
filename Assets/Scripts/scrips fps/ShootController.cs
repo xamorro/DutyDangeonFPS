@@ -34,6 +34,18 @@ public class ShootController : MonoBehaviour
 
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out RaycastHit hit, Mathf.Infinity))
         {
+
+            if (hit.transform.CompareTag("Enemigo"))
+            {
+                Destroy(hit.transform.gameObject);
+            }
+
+            //if(hit.transform.TryGetComponent(out Enemy enemic))
+            //{
+            //    enemic.morir
+            //}
+
+            /*
             if (hit.distance <= range)
             {
                 //IMPACTE
@@ -42,9 +54,8 @@ public class ShootController : MonoBehaviour
                     GameObject impact = Instantiate(impactFX, hit.point, Quaternion.LookRotation(hit.normal));
                     Destroy(impact, 2f);
                 }
-                
             }
-
+            */
         }
     }
 }
