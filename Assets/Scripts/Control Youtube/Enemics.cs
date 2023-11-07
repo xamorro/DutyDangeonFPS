@@ -10,6 +10,7 @@ public class Enemics : MonoBehaviour
          Vida -= cantidad;
         if (Vida <= 0f)
         {
+            //Abatido();
             Die();
         }
 
@@ -19,4 +20,10 @@ public class Enemics : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    void Abatido()
+    {
+        Debug.Log("hola");
+    }
+
 }

@@ -10,6 +10,8 @@ public class ShootController : MonoBehaviour
     [SerializeField] ParticleSystem fireFX;
     [SerializeField] GameObject impactFX;
 
+    [SerializeField] private LayerMask LayerPersonatge;
+
     private float nextShootTime = 0f;
 
     private void Update()
@@ -32,13 +34,13 @@ public class ShootController : MonoBehaviour
             fireFX.Play();
             //AUDIO FX
 
-        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out RaycastHit hit, Mathf.Infinity))
+        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out RaycastHit hit, Mathf.Infinity, ~LayerPersonatge))
         {
 
             if (hit.transform.CompareTag("Enemigo"))
             {
                 Enemics target = hit.transform.GetComponent<Enemics>();
-                target.DañoRecibido(4);
+                target.DañoRecibido(9);
             }
 
             //if(hit.transform.TryGetComponent(out Enemy enemic))
@@ -46,17 +48,18 @@ public class ShootController : MonoBehaviour
             //    enemic.morir
             //}
 
-            /*
             if (hit.distance <= range)
             {
                 //IMPACTE
                 if (impactFX != null)
                 {
-                    GameObject impact = Instantiate(impactFX, hit.point, Quaternion.LookRotation(hit.normal));
+                    Vector3 bulletDirection = hit.point - fpsCamera.transform.position;
+                    Quaternion bulletRotation = Quaternion.LookRotation(bulletDirection.normalized);
+                    GameObject impact = Instantiate(impactFX, hit.point, bulletRotation);
                     Destroy(impact, 2f);
                 }
             }
-            */
+            
         }
     }
 }
