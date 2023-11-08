@@ -43,17 +43,20 @@ public class ShootController : MonoBehaviour
 
     public void Shoot()
     {
-        Municio--;
+        
 
         if (Time.time >= nextShootTime)
         {
             nextShootTime = Time.time + 1 / shootRate;
             PerformShoot();
+            
         }
     }
 
     private void PerformShoot()
     {
+        Municio--;
+
         if (fireFX != null)
             fireFX.Play();
             //AUDIO FX
