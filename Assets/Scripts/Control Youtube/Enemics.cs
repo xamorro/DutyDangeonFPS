@@ -12,6 +12,7 @@ public class Enemics : MonoBehaviour
         {
             //Abatido();
             Die();
+            
         }
 
     }

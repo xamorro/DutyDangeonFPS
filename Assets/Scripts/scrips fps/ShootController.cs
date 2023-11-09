@@ -68,6 +68,7 @@ public class ShootController : MonoBehaviour
             {
                 Enemics target = hit.transform.GetComponent<Enemics>();
                 target.DañoRecibido(9);
+                hit.transform.GetComponent<Animator>().SetBool("die", true);
             }
 
             if (hit.rigidbody != null)
