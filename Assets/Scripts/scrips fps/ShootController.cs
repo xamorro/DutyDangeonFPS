@@ -16,6 +16,7 @@ public class ShootController : MonoBehaviour
 
     [SerializeField] float ForçaImpacte = 4f;
     [SerializeField] int tempsreload = 5;
+    [SerializeField] int dañoarma = 9;
 
     //BALES I RECARREGUES
     private int MaxMunicio = 30;
@@ -23,6 +24,7 @@ public class ShootController : MonoBehaviour
     private bool Recargant = false;
 
     private float nextShootTime = 0f;
+
 
     private void Start()
     {
@@ -74,12 +76,22 @@ public class ShootController : MonoBehaviour
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out RaycastHit hit, Mathf.Infinity, ~LayerPersonatge))
         {
 
-            if (hit.transform.CompareTag("Enemigo"))
+            if (hit.transform.root.gameObject.CompareTag("Enemigo"))
             {
                 Enemics target = hit.transform.GetComponent<Enemics>();
-                target.DañoRecibido(9);
+                if (target.damageType == Enemics.collisionType.head)
+                {
+                    target.DañoRecibido(dañoarma * 2);
+
+                }
+                else
+                {
+                    target.DañoRecibido(dañoarma);
+                }
                 //O TENC FICAT DFINS ENEMICS.CS// hit.transform.GetComponent<Animator>().SetBool("die", true);
             }
+
+
 
             if (hit.rigidbody != null)
             {

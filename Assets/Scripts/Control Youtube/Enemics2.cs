@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemics : MonoBehaviour{
-    public enum collisionType { head, body}
-    public collisionType damageType;
+public class Enemics2 : MonoBehaviour{
     public float Vida = 50f;
     [SerializeField] private GameObject enemigo;
 
     private void Start()
     {
-        Debug.Log(damageType);
     }
     public void DañoRecibido(float cantidad)
     {
