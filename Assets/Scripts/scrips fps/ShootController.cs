@@ -75,27 +75,34 @@ public class ShootController : MonoBehaviour
 
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out RaycastHit hit, Mathf.Infinity, ~LayerPersonatge))
         {
-
+             //MIRA ES TAG DE SA COLISIO
             if (hit.transform.root.gameObject.CompareTag("Enemigo"))
             {
-                Enemics target = hit.transform.GetComponent<Enemics>();
-                if (target.damageType == Enemics.collisionType.head)
+                //Agafam es component des pare de s'objecte impactat
+                StatsSoldat vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsSoldat>();
+
+                //Agafam es component de sa part des cos que hem impactat
+                PartsEnemics target = hit.transform.GetComponent<PartsEnemics>();
+
+                //Si sa part des cos impactat és head crida es Void public des pare de l'objecte impactat.
+                if (target.damageType == PartsEnemics.collisionType.head)
                 {
-                    target.DañoRecibido(dañoarma * 2);
+                    vidasoldat.DañoRecibido(dañoarma * 3);
 
                 }
                 else
                 {
-                    target.DañoRecibido(dañoarma);
+                    vidasoldat.DañoRecibido(dañoarma);
                 }
-                //O TENC FICAT DFINS ENEMICS.CS// hit.transform.GetComponent<Animator>().SetBool("die", true);
-            }
-            if (hit.transform.root.gameObject.CompareTag("Diana"))
-            {
-                Enemics target = hit.transform.GetComponent<Enemics>();
-                target.DañoRecibido(dañoarma * 2);
+                
             }
 
+            if (hit.transform.root.gameObject.CompareTag("Diana"))
+            {
+                StatsSoldat vidadiana = hit.transform.gameObject.GetComponent<StatsSoldat>();
+                vidadiana.DañoRecibido(dañoarma);
+
+            }
 
 
                 if (hit.rigidbody != null)
