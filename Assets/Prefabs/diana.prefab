@@ -12,11 +12,12 @@ GameObject:
   - component: {fileID: 5006475813534311075}
   - component: {fileID: 2071287555770312622}
   - component: {fileID: 6634609821590009440}
-  - component: {fileID: 4035751760553739750}
   - component: {fileID: 3132889141951962596}
+  - component: {fileID: 4035751760553739750}
+  - component: {fileID: 8741903307330296516}
   m_Layer: 0
   m_Name: diana
-  m_TagString: Untagged
+  m_TagString: Diana
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,19 +110,6 @@ CapsuleCollider:
   m_Height: 0.47576013
   m_Direction: 1
   m_Center: {x: 0.000000059084698, y: 0.7621198, z: -0.000000118169396}
---- !u!114 &4035751760553739750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8661883146086572262}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c80e855362be04c9d51224318c933b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocitat: 5
 --- !u!136 &3132889141951962596
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -145,3 +133,31 @@ CapsuleCollider:
   m_Height: 1.5294881
   m_Direction: 1
   m_Center: {x: 0.000000059084698, y: -0.23525587, z: -0.000000118169396}
+--- !u!114 &4035751760553739750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8661883146086572262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1c80e855362be04c9d51224318c933b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocitat: 5
+--- !u!114 &8741903307330296516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8661883146086572262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a9a004c7d0b1a84fa103ba0b0bf9b95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageType: 1
+  Vida: 100
+  enemigo: {fileID: 8661883146086572262}

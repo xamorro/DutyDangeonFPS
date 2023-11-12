@@ -1,8 +1,8 @@
-using Unity.VisualScripting;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootController : MonoBehaviour
+public class ShotContPROVA : MonoBehaviour
 {
     [SerializeField] Transform firePoint;
     [SerializeField] float shootRate = 10f;
@@ -11,7 +11,7 @@ public class ShootController : MonoBehaviour
     [SerializeField] Camera fpsCamera;
     [SerializeField] ParticleSystem fireFX;
     [SerializeField] GameObject impactFX;
-    
+
     [SerializeField] private LayerMask LayerPersonatge;
 
     [SerializeField] float ForçaImpacte = 4f;
@@ -50,18 +50,18 @@ public class ShootController : MonoBehaviour
         }
 
 
-       
+
     }
 
     public void Shoot()
     {
-        
+
         //Li pos municio > 0 aqui perque sinó constantment dispara i resta sense importar es reload
         if (Time.time >= nextShootTime && Municio > 0)
         {
             nextShootTime = Time.time + 1 / shootRate;
             PerformShoot();
-            
+
         }
     }
 
@@ -71,7 +71,7 @@ public class ShootController : MonoBehaviour
 
         if (fireFX != null)
             fireFX.Play();
-            //AUDIO FX
+        //AUDIO FX
 
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out RaycastHit hit, Mathf.Infinity, ~LayerPersonatge))
         {
@@ -90,15 +90,10 @@ public class ShootController : MonoBehaviour
                 }
                 //O TENC FICAT DFINS ENEMICS.CS// hit.transform.GetComponent<Animator>().SetBool("die", true);
             }
-            if (hit.transform.root.gameObject.CompareTag("Diana"))
-            {
-                Enemics target = hit.transform.GetComponent<Enemics>();
-                target.DañoRecibido(dañoarma * 2);
-            }
 
 
 
-                if (hit.rigidbody != null)
+            if (hit.rigidbody != null)
             {
                 //Aplica força cap enrera de on esteiem fent raycast
                 hit.rigidbody.AddForce(-hit.normal * ForçaImpacte);
@@ -128,7 +123,7 @@ public class ShootController : MonoBehaviour
 
         Municio = MaxMunicio;
         Recargant = false;
-        
+
 
     }
 

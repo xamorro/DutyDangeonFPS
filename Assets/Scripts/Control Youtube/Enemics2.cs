@@ -19,8 +19,8 @@ public class Enemics2 : MonoBehaviour{
             
             StartCoroutine(DeleteMort());
 
-            //PASAT ES PARE SERIALITZAT
-            enemigo.GetComponent<Animator>().SetBool("die", true);
+            
+            GetComponent<Animator>().SetBool("die", true);
 
 
             //Die();
@@ -41,7 +41,7 @@ public class Enemics2 : MonoBehaviour{
         //per root pare
         //Destroy(transform.root.gameObject);
 
-        Destroy(enemigo);
+        Destroy(gameObject);
     }
 
 }

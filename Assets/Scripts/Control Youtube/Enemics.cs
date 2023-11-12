@@ -10,12 +10,12 @@ public class Enemics : MonoBehaviour{
 
     private void Start()
     {
-        Debug.Log(damageType);
+        //Debug.Log(damageType);
     }
     public void DañoRecibido(float cantidad)
     {
          Vida -= cantidad;
-        if (Vida <= 0f)
+        if (Vida <= 0f && GetComponent<Animator>())
         {
             //Agafam es component animator de s'objecte pare principal.
             //transform.root.gameObject.GetComponent<Animator>().SetBool("die", true);
@@ -28,6 +28,10 @@ public class Enemics : MonoBehaviour{
 
             //Die();
 
+        }
+        else if (Vida <= 0f && !GetComponent<Animator>())
+        {
+            Destroy(enemigo);
         }
 
     }
