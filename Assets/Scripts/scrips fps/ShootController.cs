@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class ShootController : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class ShootController : MonoBehaviour
     [SerializeField] int tempsreload = 5;
     [SerializeField] int dañoarma = 9;
 
+    //TEXTE PER PANTALLA
+    [SerializeField] private TextMeshProUGUI InfoBales;
+
     //BALES I RECARREGUES
     private int MaxMunicio = 30;
     private int Municio;
@@ -29,6 +33,7 @@ public class ShootController : MonoBehaviour
     private void Start()
     {
         Municio = MaxMunicio;
+        InfoBales.text = (Municio.ToString() + "/" + MaxMunicio);
     }
 
 
@@ -41,23 +46,22 @@ public class ShootController : MonoBehaviour
         {
             return;
         }
-        else if (Municio <= 0)
-        {
-            //Per poder cridar a un corutin RELOAD q hem creat.
-            StartCoroutine(Reload());
-            //Es return fa que no continui llegint es codi.
-            return;
-        }
+
+        //else if (Municio <= 0)
+        //{
+        //    //per poder cridar a un corutin reload q hem creat.
+        //    StartCoroutine(Reload());
+        //}
 
 
-       
+
     }
 
     public void Shoot()
     {
         
-        //Li pos municio > 0 aqui perque sinó constantment dispara i resta sense importar es reload
-        if (Time.time >= nextShootTime && Municio > 0)
+        //Li pos municio > 0 aqui perque sinó constantment dispara i resta sense importar es reload . Pot disparar si no está recargant
+        if (!Recargant && Time.time >= nextShootTime && Municio > 0)
         {
             nextShootTime = Time.time + 1 / shootRate;
             PerformShoot();
@@ -67,7 +71,16 @@ public class ShootController : MonoBehaviour
 
     private void PerformShoot()
     {
+        //Resta 1 bala
         Municio--;
+        //Mostra ses bales que van quedant a medida que dispares
+        InfoBales.text = (Municio.ToString() + "/" + MaxMunicio);
+
+        //Si sa municio es menor a 10 es posa en vermell
+        if (Municio < 10)
+        {
+            InfoBales.color = Color.red;
+        }
 
         if (fireFX != null)
             fireFX.Play();
@@ -126,7 +139,7 @@ public class ShootController : MonoBehaviour
         }
     }
 
-    IEnumerator Reload()
+    public IEnumerator Reload()
     {
         Recargant = true;
         Debug.Log("Recargando");
@@ -134,10 +147,8 @@ public class ShootController : MonoBehaviour
         yield return new WaitForSeconds(tempsreload);
 
         Municio = MaxMunicio;
+        InfoBales.text = (Municio.ToString() + "/" + MaxMunicio);
+        InfoBales.color = Color.white;
         Recargant = false;
-        
-
     }
-
-
 }

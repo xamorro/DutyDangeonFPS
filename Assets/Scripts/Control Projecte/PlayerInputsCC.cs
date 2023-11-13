@@ -27,6 +27,11 @@ public class PlayerInputHandlerCC : MonoBehaviour
             shootController?.Shoot();
         }
 
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            shootController?.StartCoroutine(shootController?.Reload());
+        }
+
         float xMovement = Input.GetAxis("Horizontal");
         float zMovement = Input.GetAxis("Vertical");
         movementController?.SetMoveDirection(new Vector3(xMovement, 0, zMovement));
