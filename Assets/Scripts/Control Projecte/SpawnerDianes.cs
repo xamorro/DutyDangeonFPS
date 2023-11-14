@@ -6,6 +6,9 @@ public class SpawnerDianes : MonoBehaviour
 {
     [SerializeField] private GameObject dianaPrefab;
     [SerializeField] private float spawnTimer = 2.5f;
+    [SerializeField] private float TempsViu = 6.5f;
+    //[SerializeField] private float velocitat = 2f;
+
 
     private float timeCounter = 0;
 
@@ -20,17 +23,20 @@ public class SpawnerDianes : MonoBehaviour
     {
         timeCounter += Time.deltaTime;
 
+
         if (timeCounter > spawnTimer)
         {
             SpawnDiana();
             timeCounter = 0;
         }
 
+
     }
 
     private void SpawnDiana()
     {
-        GameObject diana = Instantiate(dianaPrefab, transform.position + transform.forward * 2 ,transform.rotation);
-        Destroy(diana, 5);
+        GameObject diana = Instantiate(dianaPrefab, transform.position + transform.forward * 0 , Quaternion.Euler(new Vector3(0, 0, 0)));
+        //diana.transform.Translate(Vector3.forward * velocitat * Time.deltaTime);
+        Destroy(diana, TempsViu);
     }
 }

@@ -15,31 +15,26 @@ public class StatsSoldat : MonoBehaviour
         VidaSoldat -= cantidad;
         if (VidaSoldat <= 0f && gameObject.GetComponent<Animator>())
         {
-            //Agafam es component animator de s'objecte pare principal.
-            //transform.root.gameObject.GetComponent<Animator>().SetBool("die", true);
+            //------NO L'ACTIVAM PERQUE DINS ES DESTROY() JA LI POTS DONAR TEMPS
+            //StartCoroutine(DeleteMort());
 
-            StartCoroutine(DeleteMort());
-
-            //PASAT ES PARE SERIALITZAT
+ 
             GetComponent<Animator>().SetBool("die", true);
 
 
-            //Die();
+            Destroy(gameObject,5);
 
         }
-        else if (VidaSoldat <= 0f && !GetComponent<Animator>())
-        {
-            Destroy(gameObject);
-        }
-
     }
 
-    IEnumerator DeleteMort()
-    {
-        yield return new WaitForSeconds(5);
-        //per root pare
-        //Destroy(transform.root.gameObject);
 
-        Destroy(gameObject);
-    }
+//    IEnumerator DeleteMort()
+//    {
+//        yield return new WaitForSeconds(5);
+//        //per root pare
+//        //Destroy(transform.root.gameObject);
+
+//        Destroy(gameObject);
+//    }
+
 }
