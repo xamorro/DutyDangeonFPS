@@ -100,12 +100,16 @@ public class ShootController : MonoBehaviour
                 //Si sa part des cos impactat és head crida es Void public des pare de l'objecte impactat.
                 if (target.damageType == PartsEnemics.collisionType.head)
                 {
-                    vidasoldat.DañoRecibido(dañoarma * 3);
+                    vidasoldat.DañoRecibido(dañoarma * 8);
 
+                }
+                else if (target.damageType == PartsEnemics.collisionType.body)
+                {
+                    vidasoldat.DañoRecibido(dañoarma * 2);
                 }
                 else
                 {
-                    vidasoldat.DañoRecibido(dañoarma);
+                    vidasoldat.DañoRecibido(dañoarma * 1);
                 }
                 
             }
