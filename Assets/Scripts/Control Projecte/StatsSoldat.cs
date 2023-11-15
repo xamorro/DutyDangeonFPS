@@ -5,10 +5,12 @@ using UnityEngine;
 public class StatsSoldat : MonoBehaviour
 {
     public float VidaSoldat = 50f;
+    private EnemicIA EnemicIA;
 
     // Start is called before the first frame update
     void Start()
     {
+        EnemicIA = GetComponent<EnemicIA>();
     }
     public void DañoRecibido(float cantidad)
     {
@@ -20,7 +22,7 @@ public class StatsSoldat : MonoBehaviour
 
  
             GetComponent<Animator>().SetBool("die", true);
-
+            EnemicIA.IsStop(true);
 
             Destroy(gameObject,5);
 

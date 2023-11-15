@@ -26,17 +26,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 485bd02d73de34442836929c9e523b01,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.820862
+      value: 19.07811
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 485bd02d73de34442836929c9e523b01,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1600008
+      value: 0.16000032
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 485bd02d73de34442836929c9e523b01,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.2051544
+      value: -2.7101746
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 485bd02d73de34442836929c9e523b01,
         type: 3}
@@ -280,6 +280,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1590066186349450452}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 485bd02d73de34442836929c9e523b01,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4735473857436371309}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 485bd02d73de34442836929c9e523b01,
         type: 3}
       insertIndex: -1
@@ -646,6 +650,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VidaSoldat: 100
+--- !u!114 &4735473857436371309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5275668919243323181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f646d6089f685245a63a31776aebb15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &7566923835735755135
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -656,7 +672,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 10
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
