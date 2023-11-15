@@ -22,6 +22,10 @@ public class EnemicIA : MonoBehaviour
         if (Player != null)
         {
             Move(Player.transform.position);
+            //if (navMeshEnemic.velocity > 0) 
+            //{
+            //    GetComponent<Animator>().SetFloat("run", 1);
+            //}
         }
 
     }

@@ -21,9 +21,13 @@ public class StatsSoldat : MonoBehaviour
             //StartCoroutine(DeleteMort());
 
  
+            //A sa animacio die li posam true i fará que s'activi.
             GetComponent<Animator>().SetBool("die", true);
+
+            //Cridam una funcio que está dins un altre escript de l'enemic i li deim que se posi true per  aturar l'enemic desde la navmesh.
             EnemicIA.IsStop(true);
 
+            //Eliminam l'enemic pasat 5 segons
             Destroy(gameObject,5);
 
         }
