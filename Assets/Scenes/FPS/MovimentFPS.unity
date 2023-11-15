@@ -3091,7 +3091,7 @@ Transform:
   m_GameObject: {fileID: 707243101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.2304311, z: -0, w: 0.9730887}
-  m_LocalPosition: {x: 133.58, y: 0.17, z: -78.11}
+  m_LocalPosition: {x: 143.92, y: 0.17, z: -122.14}
   m_LocalScale: {x: 0.74269605, y: 0.74269605, z: 0.74269605}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -9509,7 +9509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 67, y: 92.1}
+  m_AnchoredPosition: {x: 67, y: 92.1001}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1102477674
@@ -11765,11 +11765,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 247041636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -848.1, y: -421}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -8, y: -6.9000244}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1993015161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12221,11 +12221,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Soldat
-      objectReference: {fileID: 0}
-    - target: {fileID: 7566923835735755135, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_Acceleration
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

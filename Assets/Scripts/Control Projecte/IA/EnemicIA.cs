@@ -14,6 +14,7 @@ public class EnemicIA : MonoBehaviour
         navMeshEnemic = GetComponent<NavMeshAgent>();
         Player = GameObject.Find("Player");
         
+
     }
 
     // Update is called once per frame
@@ -22,10 +23,11 @@ public class EnemicIA : MonoBehaviour
         if (Player != null)
         {
             Move(Player.transform.position);
-            //if (navMeshEnemic.velocity > 0) 
-            //{
-            //    GetComponent<Animator>().SetFloat("run", 1);
-            //}
+            float velocity = navMeshEnemic.velocity.magnitude / navMeshEnemic.speed;
+            if (velocity > 0)
+            {
+                GetComponent<Animator>().SetFloat("run", velocity);
+            }
         }
 
     }
