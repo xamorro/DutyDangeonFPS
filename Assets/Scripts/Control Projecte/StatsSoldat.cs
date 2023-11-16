@@ -5,12 +5,12 @@ using UnityEngine;
 public class StatsSoldat : MonoBehaviour
 {
     public float VidaSoldat = 50f;
-    private EnemicIA EnemicIA;
+    private IAEnemic IAEnemic;
 
     // Start is called before the first frame update
     void Start()
     {
-        EnemicIA = GetComponent<EnemicIA>();
+        IAEnemic = GetComponent<IAEnemic>();
     }
     public void DañoRecibido(float cantidad)
     {
@@ -25,7 +25,7 @@ public class StatsSoldat : MonoBehaviour
             GetComponent<Animator>().SetBool("die", true);
 
             //Cridam una funcio que está dins un altre escript de l'enemic i li deim que se posi true per  aturar l'enemic desde la navmesh.
-            EnemicIA.IsStop(true);
+            IAEnemic.IsStop(true);
 
             //Eliminam l'enemic pasat 5 segons
             Destroy(gameObject,5);
