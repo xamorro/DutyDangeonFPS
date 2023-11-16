@@ -16,7 +16,7 @@ public class ShootController : MonoBehaviour
     [SerializeField] private LayerMask LayerPersonatge;
 
     [SerializeField] float ForçaImpacte = 4f;
-    [SerializeField] int tempsreload = 5;
+    [SerializeField] int tempsreload = 2;
     [SerializeField] int dañoarma = 9;
 
     //TEXTE PER PANTALLA
