@@ -28,7 +28,6 @@ public class IAEnemic: MonoBehaviour
 
     private State state;
 
-    private Animation anim;
     private FieldOfView vision;
     private NavMeshAgent agent;
     private Vector3 initialPosition;
@@ -126,6 +125,7 @@ public class IAEnemic: MonoBehaviour
                     if (vision.canSeePlayer)
                     {
                         ShootTimer();
+                        GetComponent<Animator>().Play("DisparAturat");
                     }
                     if (Vector3.Distance(transform.position, target.position) > atackRange)
                     {
