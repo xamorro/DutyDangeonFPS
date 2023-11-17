@@ -55,8 +55,6 @@ public class IAEnemic: MonoBehaviour
 
     private void Update()
     {
-        float velocity = agent.velocity.magnitude / agent.speed;
-        
         StatsSoldat statssoldat = gameObject.GetComponent<StatsSoldat>();
         float hpsoldat = statssoldat.VidaSoldat;
         
@@ -67,7 +65,6 @@ public class IAEnemic: MonoBehaviour
                 default:
                 case State.Patroling:
                     agent.SetDestination(patrolPosition);
-                    Debug.Log(agent.velocity);
                     agent.speed = 2;
 
                     if (agent.remainingDistance < 1f)

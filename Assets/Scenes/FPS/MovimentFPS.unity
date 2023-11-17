@@ -470,88 +470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldat (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 8766601528316153214, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: point
-      value: 
-      objectReference: {fileID: 388659021}
-    - target: {fileID: 8766601528316153214, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: prepoint
-      value: 
-      objectReference: {fileID: 824931204}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: eb2d5f2e7717dbf459d227755dfcfdf3, type: 3}
---- !u!1001 &153882890
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1655689559}
-    m_Modifications:
-    - target: {fileID: 913541275806426253, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 707243103}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -56.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.15999985
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -47.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.9170184
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.39884484
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 312.988
-      objectReference: {fileID: 0}
-    - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5275668919243323181, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}
-      propertyPath: m_Name
-      value: Soldat (7)
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8766601528316153214, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}
@@ -6357,6 +6279,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldat (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5275668919243323181, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8766601528316153214, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}
       propertyPath: point
@@ -8516,7 +8443,7 @@ Transform:
   m_GameObject: {fileID: 707243101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.2304311, z: -0, w: 0.9730887}
-  m_LocalPosition: {x: 78.9, y: 0.17, z: -50.7}
+  m_LocalPosition: {x: 79.3, y: 0.17, z: -119.8}
   m_LocalScale: {x: 0.74269605, y: 0.74269605, z: 0.74269605}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -8608,7 +8535,7 @@ PrefabInstance:
     - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.290695
+      value: -37.5
       objectReference: {fileID: 0}
     - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}
@@ -8618,7 +8545,7 @@ PrefabInstance:
     - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.316498
+      value: -15.6
       objectReference: {fileID: 0}
     - target: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}
@@ -8812,6 +8739,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Soldat (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275668919243323181, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8766601528316153214, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}
@@ -15667,7 +15599,7 @@ GameObject:
   - component: {fileID: 1109858415}
   - component: {fileID: 1109858414}
   - component: {fileID: 1109858413}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Porta (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15761,12 +15693,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109858411}
   m_Mesh: {fileID: -5734925365275067617, guid: a7b0a1ebbdaea594881bb7884850b18c, type: 3}
---- !u!4 &1142926559 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4791021049496038807, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
-    type: 3}
-  m_PrefabInstance: {fileID: 153882890}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1179662551 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: f7526adfec194cf4a8dc3bb561060031,
@@ -17048,6 +16974,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldat (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5275668919243323181, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8766601528316153214, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}
       propertyPath: point
@@ -17203,7 +17134,6 @@ Transform:
   - {fileID: 1911769114}
   - {fileID: 871820178}
   - {fileID: 306862087}
-  - {fileID: 1142926559}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1662273670 stripped
@@ -17319,6 +17249,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Soldat (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5275668919243323181, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8766601528316153214, guid: eb2d5f2e7717dbf459d227755dfcfdf3,
         type: 3}

@@ -675,7 +675,7 @@ MonoBehaviour:
   patrolMaxRange: 15
   patrolMinRange: 5
   atackRange: 12.5
-  FollowingRange: 20
+  FollowingRange: 20.8
   bulletPrefab: {fileID: 5960086880828796628, guid: e0e2364df02070e4a9570b82e28bfcf1,
     type: 3}
   prepoint: {fileID: 0}
@@ -693,8 +693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f8bb358f42e4f4a859c9538e2eed47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 30
-  coneAngle: 40
+  detectionRange: 22.48
+  coneAngle: 81
   canSeePlayer: 0
   target: {fileID: 0}
   targetMask:
