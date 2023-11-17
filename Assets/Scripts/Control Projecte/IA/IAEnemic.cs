@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -54,79 +56,93 @@ public class IAEnemic: MonoBehaviour
     private void Update()
     {
         float velocity = agent.velocity.magnitude / agent.speed;
-
-        //Debug.Log(state);
-        switch (state)
+        
+        StatsSoldat statssoldat = gameObject.GetComponent<StatsSoldat>();
+        float hpsoldat = statssoldat.VidaSoldat;
+        
+        if (hpsoldat > 0)
         {
-            default:
-            case State.Patroling:
-                agent.SetDestination(patrolPosition);
-                
-                if (agent.remainingDistance < 1f)
-                    patrolPosition = GetPatrolPosition();
-                if (velocity > 0)
-                {
-                    GetComponent<Animator>().SetFloat("run", velocity);
-                }
+            switch (state)
+            {
+                default:
+                case State.Patroling:
+                    agent.SetDestination(patrolPosition);
+                    Debug.Log(agent.velocity);
+                    agent.speed = 2;
 
-                FindTarget();
-                break;
+                    if (agent.remainingDistance < 1f)
+                        patrolPosition = GetPatrolPosition();
+                        
+                    if (agent.speed < 5)
+                    {
+                        GetComponent<Animator>().SetFloat("run", agent.speed);
+                    }
+
+                    FindTarget();
+                    break;
            
-            case State.ObserverTarget:
-                agent.isStopped = true;
-                GetComponent<Animator>().Play("RifleIdle");
-                LookTarget();
-                if (Vector3.Distance(transform.position, target.position) <= FollowingRange)
-                {
-                    agent.isStopped = false;
-                    state = State.Following;
-                }
+                case State.ObserverTarget:
+                    agent.isStopped = true;
+                    GetComponent<Animator>().Play("RifleIdle");
+                    
+                    LookTarget();
+                    if (Vector3.Distance(transform.position, target.position) <= FollowingRange)
+                    {
+                        agent.isStopped = false;
+                        state = State.Following;
+                    }
 
-                if (Vector3.Distance(transform.position, target.position) > vision.detectionRange)
-                {
-                    agent.isStopped = false;
-                    state = State.ToInitialPosition;
-                }
+                    if (Vector3.Distance(transform.position, target.position) > vision.detectionRange)
+                    {
+                        agent.isStopped = false;
+                        state = State.ToInitialPosition;
+                    }
+                
+                    break;
 
-                break;
+                case State.Following:
+                    agent.SetDestination(target.position);
+                    agent.speed = 12;
+                    if (agent.speed > 5)
+                    {
+                        GetComponent<Animator>().SetFloat("run", agent.speed);
+                    }
+                    if (!vision.canSeePlayer)
+                    {
+                        state = State.ToInitialPosition;
+                    }
+                    if (Vector3.Distance(transform.position, target.position) <= atackRange)
+                    {
+                        state = State.AtackTarget;
+                    }
 
-            case State.Following:
-                agent.SetDestination(target.position);
-                if (!vision.canSeePlayer)
-                {
-                    state = State.ToInitialPosition;
-                }
-                if (Vector3.Distance(transform.position, target.position) <= atackRange)
-                {
-                    state = State.AtackTarget;
-                }
+                    if (Vector3.Distance(transform.position, target.position) > FollowingRange)
+                    {
+                        state = State.ObserverTarget;
+                    }
 
-                if (Vector3.Distance(transform.position, target.position) > FollowingRange)
-                {
-                    state = State.ObserverTarget;
-                }
+                    break;
 
-                break;
+                case State.AtackTarget:
+                    agent.isStopped = true;
+                    LookTarget();
+                    if (vision.canSeePlayer)
+                    {
+                        ShootTimer();
+                    }
+                    if (Vector3.Distance(transform.position, target.position) > atackRange)
+                    {
+                        agent.isStopped = false;
+                        state = State.Following;
+                    }
+                    break;
 
-            case State.AtackTarget:
-                agent.isStopped = true;
-                LookTarget();
-                if (vision.canSeePlayer)
-                {
-                    ShootTimer();
-                }
-                if (Vector3.Distance(transform.position, target.position) > atackRange)
-                {
-                    agent.isStopped = false;
-                    state = State.Following;
-                }
-                break;
-
-            case State.ToInitialPosition:
-                agent.SetDestination(initialPosition);
-                if (agent.remainingDistance < 1f)
-                    state = State.Patroling;
-                break;
+                case State.ToInitialPosition:
+                    agent.SetDestination(initialPosition);
+                    if (agent.remainingDistance < 1f)
+                        state = State.Patroling;
+                    break;
+            }
         }
     }
 

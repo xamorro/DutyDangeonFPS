@@ -702,7 +702,7 @@ MonoBehaviour:
     m_Bits: 8
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!195 &7566923835735755135
 NavMeshAgent:
   m_ObjectHideFlags: 0
