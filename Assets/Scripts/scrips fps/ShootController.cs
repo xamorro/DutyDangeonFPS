@@ -12,7 +12,8 @@ public class ShootController : MonoBehaviour
     [SerializeField] Camera fpsCamera;
     [SerializeField] ParticleSystem fireFX;
     [SerializeField] GameObject impactFX;
-    
+    [SerializeField] private GameObject arma;
+
     [SerializeField] private LayerMask LayerPersonatge;
 
     [SerializeField] float ForçaImpacte = 4f;
@@ -71,6 +72,7 @@ public class ShootController : MonoBehaviour
 
     private void PerformShoot()
     {
+        arma.GetComponent<Animator>().Play("IniciDispar");
         //Resta 1 bala
         Municio--;
         //Mostra ses bales que van quedant a medida que dispares
