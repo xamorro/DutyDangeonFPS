@@ -3,15 +3,16 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class IAEnemic: MonoBehaviour
+public class IAEnemic : MonoBehaviour
 
 {
+    [SerializeField] private GameObject enemicgo;
     [SerializeField] private float patrolMaxRange = 15;
     [SerializeField] private float patrolMinRange = 5;
     [SerializeField] private float atackRange = 18;
     [SerializeField] private float FollowingRange = 30;
     [SerializeField] private GameObject bulletPrefab;
-   
+
 
     [SerializeField] private Transform prepoint;
     [SerializeField] private Transform point;
@@ -54,9 +55,9 @@ public class IAEnemic: MonoBehaviour
 
     private void Update()
     {
-        StatsSoldat statssoldat = gameObject.GetComponent<StatsSoldat>();
+        StatsSoldat statssoldat = GetComponent<StatsSoldat>();
         float hpsoldat = statssoldat.VidaSoldat;
-        
+
         if (hpsoldat > 0)
         {
             switch (state)
@@ -68,19 +69,19 @@ public class IAEnemic: MonoBehaviour
 
                     if (agent.remainingDistance < 1f)
                         patrolPosition = GetPatrolPosition();
-                        
+
                     if (agent.speed < 5)
                     {
-                        GetComponent<Animator>().SetFloat("run", agent.speed);
+                        enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
                     }
 
                     FindTarget();
                     break;
-           
+
                 case State.ObserverTarget:
                     agent.isStopped = true;
-                    GetComponent<Animator>().Play("RifleIdle");
-                    
+                    enemicgo.GetComponent<Animator>().Play("RifleIdle");
+
                     LookTarget();
                     if (Vector3.Distance(transform.position, target.position) <= FollowingRange)
                     {
@@ -93,7 +94,7 @@ public class IAEnemic: MonoBehaviour
                         agent.isStopped = false;
                         state = State.ToInitialPosition;
                     }
-                
+
                     break;
 
                 case State.Following:
@@ -101,7 +102,7 @@ public class IAEnemic: MonoBehaviour
                     agent.speed = 12;
                     if (agent.speed > 5)
                     {
-                        GetComponent<Animator>().SetFloat("run", agent.speed);
+                        enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
                     }
                     if (!vision.canSeePlayer)
                     {
@@ -125,7 +126,7 @@ public class IAEnemic: MonoBehaviour
                     if (vision.canSeePlayer)
                     {
                         ShootTimer();
-                        GetComponent<Animator>().Play("DisparAturat");
+                        enemicgo.GetComponent<Animator>().Play("DisparAturat");
                     }
                     if (Vector3.Distance(transform.position, target.position) > atackRange)
                     {
@@ -176,7 +177,7 @@ public class IAEnemic: MonoBehaviour
             state = State.ObserverTarget;
         }
 
-        
+
 
     }
 
