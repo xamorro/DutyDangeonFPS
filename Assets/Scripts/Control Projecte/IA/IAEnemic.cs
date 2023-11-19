@@ -17,6 +17,7 @@ public class IAEnemic : MonoBehaviour
     [SerializeField] private Transform prepoint;
     [SerializeField] private Transform point;
     [SerializeField] private Transform visorPoint;
+    [SerializeField] private Transform arma;
 
     private enum State
     {
@@ -33,6 +34,8 @@ public class IAEnemic : MonoBehaviour
     private NavMeshAgent agent;
     private Vector3 initialPosition;
     private Vector3 patrolPosition;
+    //private Vector3 armaPosition;
+    //private Vector3 armaRotation;
 
     private Transform target;
 
@@ -51,6 +54,9 @@ public class IAEnemic : MonoBehaviour
         target = vision.target;
         initialPosition = transform.position;
         patrolPosition = GetPatrolPosition();
+        
+        //armaPosition = arma.localPosition;
+        //armaRotation = arma.localEulerAngles;
     }
 
     private void Update()
@@ -66,6 +72,8 @@ public class IAEnemic : MonoBehaviour
                 case State.Patroling:
                     agent.SetDestination(patrolPosition);
                     agent.speed = 2;
+                    //arma.localPosition = armaPosition;
+                    //arma.localEulerAngles = armaRotation;
 
                     if (agent.remainingDistance < 1f)
                         patrolPosition = GetPatrolPosition();
@@ -127,6 +135,8 @@ public class IAEnemic : MonoBehaviour
                     {
                         ShootTimer();
                         enemicgo.GetComponent<Animator>().Play("DisparAturat");
+                        //arma.localPosition = new Vector3(0.24f, 0.28f, 0f);
+                        //arma.localEulerAngles = new Vector3(-70.605f, 105.547f, -17.603f);
                     }
                     if (Vector3.Distance(transform.position, target.position) > atackRange)
                     {
