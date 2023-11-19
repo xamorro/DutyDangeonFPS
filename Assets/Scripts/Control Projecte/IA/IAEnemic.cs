@@ -107,7 +107,7 @@ public class IAEnemic : MonoBehaviour
 
                 case State.Following:
                     agent.SetDestination(target.position);
-                    agent.speed = 12;
+                    agent.speed = 9;
                     if (agent.speed > 5)
                     {
                         enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
