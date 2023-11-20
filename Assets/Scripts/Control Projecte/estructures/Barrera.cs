@@ -15,11 +15,11 @@ public class Barrera: MonoBehaviour
 
         if (distance <= 10 )
         {
-            animator.SetBool("Aprop", true);
+            animator.SetTrigger("Aprop");
         }
         else
         {
-            animator.SetBool("Aprop", false);
+            animator.SetTrigger("Aprop");
         }
     }
 

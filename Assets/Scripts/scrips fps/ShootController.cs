@@ -91,7 +91,7 @@ public class ShootController : MonoBehaviour
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out RaycastHit hit, Mathf.Infinity, ~LayerPersonatge))
         {
              //MIRA ES TAG DE SA COLISIO
-            if (hit.transform.root.gameObject.CompareTag("Enemigo") || hit.transform.root.gameObject.CompareTag("EnemigoZ1"))
+            if (hit.transform.root.gameObject.CompareTag("Enemigo"))
             {
                 //Agafam es component des pare de s'objecte impactat
                 StatsSoldat vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsSoldat>();

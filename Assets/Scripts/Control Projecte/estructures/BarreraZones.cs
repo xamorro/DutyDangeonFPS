@@ -9,29 +9,54 @@ public class BarreraZones : MonoBehaviour
 
     private enum Zona
     {
-        zona1,
-        zona2,
-        zona3
+        portazona1,
+        portazona2,
+        portazona3
     }
 
-    [SerializeField] private Zona zona;
+    [SerializeField] private Zona zonaEnemics;
 
-    private void OnTriggerStay(Collider other)
+
+    private void Update()
     {
-        contador();
-        if (contadorenemics == 0)
+        switch (zonaEnemics)
         {
-            animator.SetTrigger("Aprop");
+            default:
+            case Zona.portazona1:
+                contadorEnemigoZ1();
+                if (contadorenemics == 0)
+                {
+                    animator.SetTrigger("Aprop");
+                    GetComponent<BarreraZones>().enabled = false;
+                }
+                break;
+
+            case Zona.portazona2:
+                contadorEnemigoZ2();
+                if (contadorenemics == 0)
+                {
+                    animator.SetTrigger("Aprop");
+                    GetComponent<BarreraZones>().enabled = false;
+                }
+                break;
         }
     }
 
-    private void contador()
+    private void contadorEnemigoZ1()
     {
-
+        //Agafa objectes que tenen ficat un script EnemigoZ1 i que t'hes igual s'ordre de retorn.
         EnemigoZ1[] enemics = FindObjectsByType<EnemigoZ1>(FindObjectsSortMode.None);
 
-        Debug.Log(enemics.Length);
+        //.length me diu quants resultats hi ha
+        //Debug.Log(enemics.Length);
 
+        contadorenemics = enemics.Length;
+    }
+
+    private void contadorEnemigoZ2()
+    {
+        EnemigoZ2[] enemics = FindObjectsByType<EnemigoZ2>(FindObjectsSortMode.None);
+        //Debug.Log(enemics.Length);
         contadorenemics = enemics.Length;
     }
 }
