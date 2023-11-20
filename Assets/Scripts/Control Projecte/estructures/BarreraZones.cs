@@ -7,30 +7,31 @@ public class BarreraZones : MonoBehaviour
     private float contadorenemics;
     [SerializeField] private Animator animator;
 
+    private enum Zona
+    {
+        zona1,
+        zona2,
+        zona3
+    }
+
+    [SerializeField] private Zona zona;
+
     private void OnTriggerStay(Collider other)
     {
         contador();
         if (contadorenemics == 0)
         {
-            animator.SetBool("Aprop", true);
-        }
-        else
-        {
-            animator.SetBool("Aprop", false);
+            animator.SetTrigger("Aprop");
         }
     }
 
     private void contador()
     {
-        contadorenemics = 0;
 
-        GameObject[] enemics = GameObject.FindGameObjectsWithTag("EnemigoZ1");
+        EnemigoZ1[] enemics = FindObjectsByType<EnemigoZ1>(FindObjectsSortMode.None);
 
-        foreach (GameObject e in enemics)
-        {
-            contadorenemics = contadorenemics + 1;
-        }
+        Debug.Log(enemics.Length);
 
-        Debug.Log(contadorenemics);
+        contadorenemics = enemics.Length;
     }
 }
