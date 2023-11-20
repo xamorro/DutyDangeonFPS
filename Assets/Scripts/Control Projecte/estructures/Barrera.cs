@@ -13,13 +13,13 @@ public class Barrera: MonoBehaviour
     {
         float distance = Vector3.Distance(player.position, barrera.position);
 
-        if (distance <= 10 )
+        if (distance <= 10)
         {
-            animator.SetTrigger("Aprop");
+            animator.SetBool("Obrir", true);
         }
         else
         {
-            animator.SetTrigger("Aprop");
+            animator.SetBool("Obrir", false);
         }
     }
 

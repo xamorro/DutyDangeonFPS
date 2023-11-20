@@ -26,7 +26,7 @@ public class BarreraZones : MonoBehaviour
                 contadorEnemigoZ1();
                 if (contadorenemics == 0)
                 {
-                    animator.SetTrigger("Aprop");
+                    animator.SetBool("Obrir", true);
                     GetComponent<BarreraZones>().enabled = false;
                 }
                 break;
@@ -35,7 +35,7 @@ public class BarreraZones : MonoBehaviour
                 contadorEnemigoZ2();
                 if (contadorenemics == 0)
                 {
-                    animator.SetTrigger("Aprop");
+                    animator.SetBool("Obrir", true);
                     GetComponent<BarreraZones>().enabled = false;
                 }
                 break;
