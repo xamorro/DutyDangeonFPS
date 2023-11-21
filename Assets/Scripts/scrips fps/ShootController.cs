@@ -14,6 +14,8 @@ public class ShootController : MonoBehaviour
     [SerializeField] GameObject impactFX;
     [SerializeField] private GameObject arma;
 
+    //[SerializeField] private Transform apuntatarma;
+
     [SerializeField] private LayerMask LayerPersonatge;
 
     [SerializeField] float ForçaImpacte = 4f;
@@ -68,6 +70,11 @@ public class ShootController : MonoBehaviour
             PerformShoot();
             
         }
+    }
+
+    public void Apuntar()
+    {
+        //Vector3.Lerp(arma.transform.position, apuntatarma.position, aa);
     }
 
     private void PerformShoot()

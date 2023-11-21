@@ -27,6 +27,17 @@ public class PlayerInputHandlerCC : MonoBehaviour
             shootController?.Shoot();
         }
 
+        if (Input.GetButtonDown("Fire2"))
+        {
+            shootController?.Apuntar();
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            shootController?.Apuntar();
+        }
+
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             shootController?.StartCoroutine(shootController?.Reload());
