@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Menu : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Menu : MonoBehaviour
     [SerializeField] private GameObject controlMenu;
     [SerializeField] private GameObject aboutMenu;
 
+    public GameObject menuFirstButton, optionsFirstButton, controlsFirstButton ,aboutFirstButton;
+
     private void Start()
     {
         //crida s'script quan es valor de slider cambia
@@ -35,35 +38,42 @@ public class Menu : MonoBehaviour
     public void CloseMenuOptions()
     {
         optMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(menuFirstButton);
         principalMenu.SetActive(true);
     }
 
     public void CloseMenuAbout()
     {
         aboutMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(menuFirstButton);
         principalMenu.SetActive(true);
     }
 
     public void CloseMenuControl()
     {
         controlMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(menuFirstButton);
         principalMenu.SetActive(true);
     }
 
     public void OpenMenuOptions()
     {
         optMenu.SetActive(true);
+        //EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(optionsFirstButton);
         principalMenu.SetActive(false);
     }
 
     public void OpenMenuAbout()
     {
         aboutMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(aboutFirstButton);
         principalMenu.SetActive(false);
     }
     public void OpenMenuControl()
     {
         controlMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(controlsFirstButton);
         principalMenu.SetActive(false);
     }
 
@@ -83,5 +93,6 @@ public class Menu : MonoBehaviour
         textSoundVolume.text = soundVolume.ToString();
 
     }
+
 
 }
