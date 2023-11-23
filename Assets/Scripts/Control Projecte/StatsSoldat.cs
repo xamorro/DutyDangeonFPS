@@ -8,6 +8,7 @@ public class StatsSoldat : MonoBehaviour
     public GameObject soldat;
     private IAEnemic IAEnemic;
 
+
     // Start is called before the first frame update
     void Start()
     {

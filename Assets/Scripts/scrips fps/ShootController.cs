@@ -2,6 +2,7 @@ using Unity.VisualScripting;
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ShootController : MonoBehaviour
 {
@@ -14,34 +15,38 @@ public class ShootController : MonoBehaviour
     [SerializeField] GameObject impactFX;
     [SerializeField] private GameObject arma;
 
-    //[SerializeField] private Transform apuntatarma;
-
+    [Header("No impacta")]
     [SerializeField] private LayerMask LayerPersonatge;
 
     [SerializeField] float ForçaImpacte = 4f;
     [SerializeField] int tempsreload = 2;
     [SerializeField] int dañoarma = 9;
 
-    //TEXTE PER PANTALLA
-    [SerializeField] private TextMeshProUGUI InfoBales;
-
     //BALES I RECARREGUES
     private int MaxMunicio = 30;
     private int Municio;
+    public static event Action<int> MunicioModificada;
     private bool Recargant = false;
 
+    //PROVES LERP
+    private float tempsPasat;
+    private float duracioApuntat = 1f;
+    [SerializeField] GameObject posicioApuntat;
     private float nextShootTime = 0f;
 
 
     private void Start()
     {
         Municio = MaxMunicio;
-        InfoBales.text = (Municio.ToString() + "/" + MaxMunicio);
+        MunicioModificada?.Invoke(Municio);
     }
 
 
     private void Update()
     {
+        tempsPasat += Time.deltaTime;
+        
+
         //Mos dibuixa un laser desde sa posicio de sa camera, cap a nes forward 
         Debug.DrawRay(fpsCamera.transform.position, fpsCamera.transform.forward * range, Color.red);
 
@@ -74,22 +79,16 @@ public class ShootController : MonoBehaviour
 
     public void Apuntar()
     {
-        //Vector3.Lerp(arma.transform.position, apuntatarma.position, aa);
+        float percentageComplete = tempsPasat / duracioApuntat;
+        arma.transform.position = Vector3.Lerp(arma.transform.position, posicioApuntat.transform.position, percentageComplete);
     }
 
     private void PerformShoot()
     {
         arma.GetComponent<Animator>().Play("IniciDispar");
-        //Resta 1 bala
+        //Resta 1 bala i l'invocam com event
         Municio--;
-        //Mostra ses bales que van quedant a medida que dispares
-        InfoBales.text = (Municio.ToString() + "/" + MaxMunicio);
-
-        //Si sa municio es menor a 10 es posa en vermell
-        if (Municio < 10)
-        {
-            InfoBales.color = Color.red;
-        }
+        MunicioModificada?.Invoke(Municio);
 
         if (fireFX != null)
             fireFX.Play();
@@ -161,8 +160,7 @@ public class ShootController : MonoBehaviour
         yield return new WaitForSeconds(tempsreload);
 
         Municio = MaxMunicio;
-        InfoBales.text = (Municio.ToString() + "/" + MaxMunicio);
-        InfoBales.color = Color.white;
+        MunicioModificada?.Invoke(Municio);
         Recargant = false;
     }
 }
