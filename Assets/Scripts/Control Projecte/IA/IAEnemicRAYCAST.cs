@@ -142,8 +142,6 @@ public class IAEnemicRaycast: MonoBehaviour
                     {
                         ShootTimer();
                         enemicgo.GetComponent<Animator>().Play("DisparAturat");
-                        //arma.localPosition = new Vector3(0.24f, 0.28f, 0f);
-                        //arma.localEulerAngles = new Vector3(-70.605f, 105.547f, -17.603f);
                     }
                     if (Vector3.Distance(transform.position, target.position) > atackRange)
                     {

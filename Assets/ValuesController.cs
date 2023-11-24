@@ -7,16 +7,19 @@ public class ValuesController : MonoBehaviour
 {
     [Header("Texte Municio")]
     [SerializeField] private TextMeshProUGUI municio;
+    [SerializeField] private TextMeshProUGUI maxMunicio;
 
     private void OnEnable()
     {
         ShootController.MunicioModificada += UpdateAmmo;
+        ShootController.MunicioMaxModificada += MaxUpdateAmmo;
     }
 
     private void OnDisable()
     {
 
         ShootController.MunicioModificada -= UpdateAmmo;
+        ShootController.MunicioMaxModificada += MaxUpdateAmmo;
     }
 
     private void UpdateAmmo(int ammo)
@@ -30,6 +33,11 @@ public class ValuesController : MonoBehaviour
         {
             municio.color = Color.white;
         }
+    }
+
+    private void MaxUpdateAmmo(int ammo)
+    {
+        maxMunicio.text = ammo.ToString();
     }
 
 }

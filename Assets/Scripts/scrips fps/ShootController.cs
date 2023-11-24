@@ -23,9 +23,12 @@ public class ShootController : MonoBehaviour
     [SerializeField] int dañoarma = 9;
 
     //BALES I RECARREGUES
-    private int MaxMunicio = 30;
+    private const int MAXMUNICIOCARGADOR = 30;
+    private const int MAXMUNICIOARMA = 100;
+    private int Cargador;
     private int Municio;
     public static event Action<int> MunicioModificada;
+    public static event Action<int> MunicioMaxModificada;
     private bool Recargant = false;
 
     //PROVES LERP
@@ -37,8 +40,10 @@ public class ShootController : MonoBehaviour
 
     private void Start()
     {
-        Municio = MaxMunicio;
-        MunicioModificada?.Invoke(Municio);
+        Cargador = MAXMUNICIOCARGADOR;
+        Municio = MAXMUNICIOARMA;
+        MunicioModificada?.Invoke(Cargador);
+        MunicioMaxModificada?.Invoke(Municio);
     }
 
 
@@ -55,13 +60,6 @@ public class ShootController : MonoBehaviour
             return;
         }
 
-        //else if (Municio <= 0)
-        //{
-        //    //per poder cridar a un corutin reload q hem creat.
-        //    StartCoroutine(Reload());
-        //}
-
-
 
     }
 
@@ -69,7 +67,7 @@ public class ShootController : MonoBehaviour
     {
         
         //Li pos municio > 0 aqui perque sinó constantment dispara i resta sense importar es reload . Pot disparar si no está recargant
-        if (!Recargant && Time.time >= nextShootTime && Municio > 0)
+        if (!Recargant && Time.time >= nextShootTime && Cargador > 0)
         {
             nextShootTime = Time.time + 1 / shootRate;
             PerformShoot();
@@ -87,8 +85,8 @@ public class ShootController : MonoBehaviour
     {
         arma.GetComponent<Animator>().Play("IniciDispar");
         //Resta 1 bala i l'invocam com event
-        Municio--;
-        MunicioModificada?.Invoke(Municio);
+        Cargador--;
+        MunicioModificada?.Invoke(Cargador);
 
         if (fireFX != null)
             fireFX.Play();
@@ -154,13 +152,31 @@ public class ShootController : MonoBehaviour
 
     public IEnumerator Reload()
     {
+        int balesConsumides = MAXMUNICIOCARGADOR - Cargador;
+        Debug.Log("Bales Consumides: " + balesConsumides);
         Recargant = true;
-        Debug.Log("Recargando");
+        //Debug.Log("Recargando");
 
         yield return new WaitForSeconds(tempsreload);
 
-        Municio = MaxMunicio;
-        MunicioModificada?.Invoke(Municio);
+        if (balesConsumides > Municio)
+        {
+            Debug.Log("No ompliras el cargador");
+            Cargador += Municio;
+            Municio = 0;
+        }
+        else 
+        {
+            Debug.Log("Ompliras el carregador");
+            Cargador += balesConsumides;
+            //A municio(180) - (30 -(30-6))  = 176
+            Municio -= MAXMUNICIOCARGADOR - (MAXMUNICIOCARGADOR - balesConsumides);
+        }       
+
+
+        MunicioModificada?.Invoke(Cargador);
+        MunicioMaxModificada?.Invoke(Municio);
         Recargant = false;
+        
     }
 }
