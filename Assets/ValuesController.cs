@@ -19,7 +19,7 @@ public class ValuesController : MonoBehaviour
     {
 
         ShootController.MunicioModificada -= UpdateAmmo;
-        ShootController.MunicioMaxModificada += MaxUpdateAmmo;
+        ShootController.MunicioMaxModificada -= MaxUpdateAmmo;
     }
 
     private void UpdateAmmo(int ammo)
