@@ -5,21 +5,27 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class Barrera: MonoBehaviour
 {
+    [SerializeField] private GameObject clauCanvas;
+
     public Animator animator;
     public Transform player;
     public Transform barrera;
+    private bool obert = false;
 
     private void Update()
     {
         float distance = Vector3.Distance(player.position, barrera.position);
 
-        if (distance <= 10)
+        //Si tenc sa clau aixó
+        if (distance <= 3 && clauCanvas.activeInHierarchy)
         {
+            obert = true;
             animator.SetBool("Obrir", true);
+            clauCanvas.SetActive(false);
         }
-        else
+        else if (distance <= 3 && obert == false)
         {
-            animator.SetBool("Obrir", false);
+            Debug.Log("Necesitas una llave!");
         }
     }
 
