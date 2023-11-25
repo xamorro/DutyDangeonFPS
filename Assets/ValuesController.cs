@@ -9,10 +9,14 @@ public class ValuesController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI municio;
     [SerializeField] private TextMeshProUGUI maxMunicio;
 
+    [Header("Texte Vida")]
+    [SerializeField] private TextMeshProUGUI vidaJugador;
+
     private void OnEnable()
     {
         ShootController.MunicioModificada += UpdateAmmo;
         ShootController.MunicioMaxModificada += MaxUpdateAmmo;
+        StatsPlayer.VidaModificada += UpdateVida;
     }
 
     private void OnDisable()
@@ -20,6 +24,7 @@ public class ValuesController : MonoBehaviour
 
         ShootController.MunicioModificada -= UpdateAmmo;
         ShootController.MunicioMaxModificada -= MaxUpdateAmmo;
+        StatsPlayer.VidaModificada -= UpdateVida;
     }
 
     private void UpdateAmmo(int ammo)
@@ -40,4 +45,8 @@ public class ValuesController : MonoBehaviour
         maxMunicio.text = ammo.ToString();
     }
 
+    private void UpdateVida(float vida)
+    {
+        vidaJugador.text = vida.ToString();
+    }
 }

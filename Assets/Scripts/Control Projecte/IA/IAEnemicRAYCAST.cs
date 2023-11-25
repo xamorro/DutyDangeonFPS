@@ -220,10 +220,21 @@ public class IAEnemicRaycast: MonoBehaviour
 
     private void PerformShoot()
     {
-        
+
         if (Physics.Raycast(IniciDispar.transform.position, IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
         {
-            Debug.Log("jugador ferit");
+            int randomnumber = Random.Range(0, 4);
+            if (randomnumber == 3)
+            {
+                if (hit.transform.root.gameObject.CompareTag("Player"))
+                {
+                    //Agafam es component des pare de s'objecte impactat
+                    StatsPlayer vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsPlayer>();
+                    vidasoldat.DañoRecibido(8);
+                }
+                Debug.Log("jugador ferit");
+            }
+
         }
     }
 
