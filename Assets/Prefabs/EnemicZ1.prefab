@@ -2854,11 +2854,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3997356382868971171}
   - component: {fileID: 3155803516974233827}
-  - component: {fileID: 7357579124114766813}
   - component: {fileID: 4997069470527826461}
   - component: {fileID: 584563301502219700}
   - component: {fileID: 3625532772793429196}
   - component: {fileID: 9032244516402813378}
+  - component: {fileID: 5541410002367777900}
   m_Layer: 0
   m_Name: EnemicZ1
   m_TagString: EnemigoZ1
@@ -2896,29 +2896,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VidaSoldat: 100
   soldat: {fileID: 6169897666010722959}
---- !u!114 &7357579124114766813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4944054921102585870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9956807b11ed44ab468cbb267f08a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemicgo: {fileID: 6169897666010722959}
-  patrolMaxRange: 15
-  patrolMinRange: 5
-  atackRange: 12.5
-  FollowingRange: 20.8
-  bulletPrefab: {fileID: 5960086880828796628, guid: e0e2364df02070e4a9570b82e28bfcf1,
-    type: 3}
-  prepoint: {fileID: 0}
-  point: {fileID: 0}
-  visorPoint: {fileID: 3916761998596474581}
-  arma: {fileID: 3109208622558262857}
 --- !u!114 &4997069470527826461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2994,6 +2971,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac48ae26d605c145bc8ee106a3dd53b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5541410002367777900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4944054921102585870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545812c7b48c5af479095adac4c5a92d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemicgo: {fileID: 0}
+  patrolMaxRange: 15
+  patrolMinRange: 5
+  atackRange: 12.5
+  FollowingRange: 20.8
+  bulletPrefab: {fileID: 5960086880828796628, guid: e0e2364df02070e4a9570b82e28bfcf1,
+    type: 3}
+  LayerPersonatge:
+    serializedVersion: 2
+    m_Bits: 8
+  prepoint: {fileID: 0}
+  point: {fileID: 0}
+  visorPoint: {fileID: 0}
+  arma: {fileID: 0}
+  IniciDispar: {fileID: 0}
 --- !u!1 &4976718113378564623
 GameObject:
   m_ObjectHideFlags: 0

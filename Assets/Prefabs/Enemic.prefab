@@ -2291,10 +2291,10 @@ GameObject:
   m_Component:
   - component: {fileID: 348899068369048964}
   - component: {fileID: 6647580515151165907}
-  - component: {fileID: 3298178625815936501}
   - component: {fileID: 1011707812802249942}
   - component: {fileID: 4074704756753757266}
   - component: {fileID: 7694374733966026487}
+  - component: {fileID: 8843203440318490920}
   m_Layer: 0
   m_Name: Enemic
   m_TagString: Enemigo
@@ -2332,28 +2332,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VidaSoldat: 100
   soldat: {fileID: 3496738044132039758}
---- !u!114 &3298178625815936501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4667590722261386293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9956807b11ed44ab468cbb267f08a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemicgo: {fileID: 3496738044132039758}
-  patrolMaxRange: 15
-  patrolMinRange: 5
-  atackRange: 12.5
-  FollowingRange: 20.8
-  bulletPrefab: {fileID: 5960086880828796628, guid: e0e2364df02070e4a9570b82e28bfcf1,
-    type: 3}
-  prepoint: {fileID: 0}
-  point: {fileID: 0}
-  visorPoint: {fileID: 6363413328328893652}
 --- !u!114 &1011707812802249942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2417,6 +2395,33 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!114 &8843203440318490920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4667590722261386293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545812c7b48c5af479095adac4c5a92d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemicgo: {fileID: 3496738044132039758}
+  patrolMaxRange: 15
+  patrolMinRange: 5
+  atackRange: 12.5
+  FollowingRange: 20.8
+  bulletPrefab: {fileID: 5960086880828796628, guid: e0e2364df02070e4a9570b82e28bfcf1,
+    type: 3}
+  LayerPersonatge:
+    serializedVersion: 2
+    m_Bits: 8
+  prepoint: {fileID: 0}
+  point: {fileID: 0}
+  visorPoint: {fileID: 6363413328328893652}
+  arma: {fileID: 0}
+  IniciDispar: {fileID: 0}
 --- !u!1 &4670742181298178720
 GameObject:
   m_ObjectHideFlags: 0

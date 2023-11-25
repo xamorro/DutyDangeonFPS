@@ -33,6 +33,7 @@ public class StatsPlayer : MonoBehaviour
 
         if (VidaPlayer <= 0f)
         {
+            VidaModificada?.Invoke(0);
             Debug.Log("Has mort");
         }
     }

@@ -10,6 +10,7 @@ public class IAEnemicRaycast: MonoBehaviour
     [SerializeField] private float patrolMaxRange = 15;
     [SerializeField] private float patrolMinRange = 5;
     [SerializeField] private float atackRange = 18;
+    [SerializeField] private float armaDaño = 8;
     [SerializeField] private float FollowingRange = 30;
     [SerializeField] private GameObject bulletPrefab;
 
@@ -64,8 +65,7 @@ public class IAEnemicRaycast: MonoBehaviour
 
     private void Update()
     {
-        //Debug.DrawLine(IniciDispar.transform.position, IniciDispar.transform.position + IniciDispar.transform.forward * 100, Color.red);
-
+        //Raycast dispar fora cap random
         Debug.DrawRay(IniciDispar.transform.position, IniciDispar.transform.forward * 100, Color.red);
 
         StatsSoldat statssoldat = GetComponent<StatsSoldat>();
@@ -220,21 +220,18 @@ public class IAEnemicRaycast: MonoBehaviour
 
     private void PerformShoot()
     {
-
-        if (Physics.Raycast(IniciDispar.transform.position, IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
+        float randomnumber = Random.Range(1.2f, -1.2f);
+        if (Physics.Raycast(IniciDispar.transform.position + new Vector3(0f, randomnumber, 0f), IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
         {
-            int randomnumber = Random.Range(0, 4);
-            if (randomnumber == 3)
+            
+            if (hit.transform.root.gameObject.CompareTag("Player"))
             {
-                if (hit.transform.root.gameObject.CompareTag("Player"))
-                {
-                    //Agafam es component des pare de s'objecte impactat
-                    StatsPlayer vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsPlayer>();
-                    vidasoldat.DañoRecibido(8);
-                }
                 Debug.Log("jugador ferit");
+                //Agafam es component des pare de s'objecte impactat
+                StatsPlayer vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsPlayer>();
+                vidasoldat.DañoRecibido(armaDaño);
             }
-
+                
         }
     }
 

@@ -6,13 +6,13 @@ public class StatsSoldat : MonoBehaviour
 {
     public float VidaSoldat = 50f;
     public GameObject soldat;
-    private IAEnemic IAEnemic;
+    private IAEnemicRaycast IAEnemic;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        IAEnemic = GetComponent<IAEnemic>();
+        IAEnemic = GetComponent<IAEnemicRaycast>();
     }
     public void DañoRecibido(float cantidad)
     {
@@ -34,15 +34,4 @@ public class StatsSoldat : MonoBehaviour
 
         }
     }
-
-
-    //    IEnumerator DeleteMort()
-    //    {
-    //        yield return new WaitForSeconds(5);
-    //        //per root pare
-    //        //Destroy(transform.root.gameObject);
-
-    //        Destroy(gameObject);
-    //    }
-
 }
