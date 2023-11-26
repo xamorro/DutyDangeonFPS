@@ -84,6 +84,7 @@ public class ShootController : MonoBehaviour
     private void PerformShoot()
     {
         arma.GetComponent<Animator>().Play("IniciDispar");
+        arma.GetComponent<Animator>().Play("Retroces");
         //Resta 1 bala i l'invocam com event
         Cargador--;
         MunicioModificada?.Invoke(Cargador);
@@ -155,6 +156,7 @@ public class ShootController : MonoBehaviour
         int balesConsumides = MAXMUNICIOCARGADOR - Cargador;
         Debug.Log("Bales Consumides: " + balesConsumides);
         Recargant = true;
+        arma.GetComponent<Animator>().Play("Recarga");
         //Debug.Log("Recargando");
 
         yield return new WaitForSeconds(tempsreload);
