@@ -83,7 +83,6 @@ public class ShootController : MonoBehaviour
 
     private void PerformShoot()
     {
-        arma.GetComponent<Animator>().Play("IniciDispar");
         arma.GetComponent<Animator>().Play("Retroces");
         //Resta 1 bala i l'invocam com event
         Cargador--;
@@ -154,27 +153,33 @@ public class ShootController : MonoBehaviour
     public IEnumerator Reload()
     {
         int balesConsumides = MAXMUNICIOCARGADOR - Cargador;
-        Debug.Log("Bales Consumides: " + balesConsumides);
+        //Debug.Log("Bales Consumides: " + balesConsumides);
         Recargant = true;
-        arma.GetComponent<Animator>().Play("Recarga");
+        if (Cargador == 0 && Municio == 0)
+        {
+            Debug.Log("No tens municio");
+        }
+        else
+        {
+            arma.GetComponent<Animator>().Play("Recarga");
+        }
+        
         //Debug.Log("Recargando");
 
         yield return new WaitForSeconds(tempsreload);
 
         if (balesConsumides > Municio)
         {
-            Debug.Log("No ompliras el cargador");
             Cargador += Municio;
             Municio = 0;
         }
         else 
         {
-            Debug.Log("Ompliras el carregador");
+            //Debug.Log("Ompliras el carregador");
             Cargador += balesConsumides;
             //A municio(180) - (30 -(30-6))  = 176
             Municio -= MAXMUNICIOCARGADOR - (MAXMUNICIOCARGADOR - balesConsumides);
-        }       
-
+        }
 
         MunicioModificada?.Invoke(Cargador);
         MunicioMaxModificada?.Invoke(Municio);
