@@ -83,6 +83,7 @@ public class ShootController : MonoBehaviour
 
     private void PerformShoot()
     {
+        AudioManager.I.PlaySound(SoundName.AkShot);
         arma.GetComponent<Animator>().Play("Retroces");
         //Resta 1 bala i l'invocam com event
         Cargador--;
