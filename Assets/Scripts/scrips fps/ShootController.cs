@@ -19,7 +19,7 @@ public class ShootController : MonoBehaviour
     [SerializeField] private LayerMask LayerPersonatge;
 
     [SerializeField] float ForçaImpacte = 4f;
-    [SerializeField] int tempsreload = 2;
+    [SerializeField] float tempsreload = 1.5f;
     [SerializeField] int dañoarma = 9;
 
     //BALES I RECARREGUES
@@ -37,6 +37,8 @@ public class ShootController : MonoBehaviour
     [SerializeField] GameObject posicioApuntat;
     private float nextShootTime = 0f;
 
+    private Animator armaAnimator;
+
 
     private void Start()
     {
@@ -44,6 +46,8 @@ public class ShootController : MonoBehaviour
         Municio = MAXMUNICIOARMA;
         MunicioModificada?.Invoke(Cargador);
         MunicioMaxModificada?.Invoke(Municio);
+
+        armaAnimator = arma.GetComponent<Animator>();
     }
 
 
@@ -84,7 +88,7 @@ public class ShootController : MonoBehaviour
     private void PerformShoot()
     {
         AudioManager.I.PlaySound(SoundName.AkShot);
-        arma.GetComponent<Animator>().Play("Retroces");
+        armaAnimator.Play("Retroces");
         //Resta 1 bala i l'invocam com event
         Cargador--;
         MunicioModificada?.Invoke(Cargador);
@@ -162,9 +166,16 @@ public class ShootController : MonoBehaviour
         }
         else
         {
-            arma.GetComponent<Animator>().Play("Recarga");
+            if (balesConsumides != 0)
+            {
+                
+                armaAnimator.Play("Recarga");
+                AudioManager.I.PlaySound(SoundName.ReloadAK);
+            }
+            
+
         }
-        
+
         //Debug.Log("Recargando");
 
         yield return new WaitForSeconds(tempsreload);

@@ -27,3 +27,17 @@ MonoBehaviour:
     hasPlayTimer: 1
     playTimer: 6
     spacialBlend: 1
+  - soundName: 3
+    audioClip: {fileID: 8300000, guid: d3b18a1d4cad1c94087f0bf8799c575d, type: 3}
+    loop: 0
+    volume: 0.193
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0
+  - soundName: 4
+    audioClip: {fileID: 8300000, guid: 035d5d35562baa6439219eb731a4a20c, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 1
+    playTimer: 0.45412698
+    spacialBlend: 0

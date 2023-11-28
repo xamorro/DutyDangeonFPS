@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {        
         Move();
+
         
         ApplyGravity();
 
@@ -78,6 +79,19 @@ public class PlayerMovement : MonoBehaviour
 
         //Movem es controller amb sa posicio movement * velocitat * deltatime
         controller.Move(movement * speed * Time.deltaTime);
+
+        if (isMoving())
+        {
+            AudioManager.I.PlaySound(SoundName.Pasos);
+        }
+
+    }
+
+    private bool isMoving()
+    {
+        Vector3 horizontalVelocity = new Vector3(controller.velocity.x, 0, controller.velocity.z);
+
+        return horizontalVelocity.magnitude > 0.1f;
     }
 
 

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,16 +9,19 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private bool playSceneMusic;
     [SerializeField] private SoundName sceneMusicClip;
 
+    [SerializeField] private bool playAmbianceSound;
+    [SerializeField] private SoundName ambianceClip;
+
     [SerializeField] SoundLibrary soundLibrary;
 
 
     private Dictionary<SoundName, float> soundTimers;
-    private AudioSource audioSource2d;
-    private AudioSource sceneMusicAudioSource;
+    private readonly AudioSource sceneMusicAudioSource;
+    private readonly AudioSource ambianceAudioSource;
 
     private void Awake()
     {
-        if (I is null)
+        if (I == null)
         {
             I = this;
             DontDestroyOnLoad(gameObject);
@@ -33,17 +37,9 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         if (playSceneMusic)
-            PlaySceneMusic(sceneMusicClip);
-    }
-
-    private void InitializeSoundTimers()
-    {
-        soundTimers = new Dictionary<SoundName, float>();
-        foreach (SoundClip soundClip in soundLibrary.soundClips)
-        {
-            if (soundClip.hasPlayTimer)
-                soundTimers[soundClip.soundName] = soundClip.playTimer;
-        }
+            PlayBackgroundSounds(sceneMusicClip, sceneMusicAudioSource);
+        if (playAmbianceSound)
+            PlayBackgroundSounds(ambianceClip, ambianceAudioSource);
     }
 
     public void PlaySound(SoundName soundName)
@@ -52,18 +48,26 @@ public class AudioManager : MonoBehaviour
         if (soundClip == null || !CanPlaySound(soundClip))
             return;
 
-        if (audioSource2d is null)
-        {
-            GameObject soundGameObject = new("2D Sound");
-            soundGameObject.transform.SetParent(transform);
-            audioSource2d = soundGameObject.AddComponent<AudioSource>();
-        }
 
+
+        /////////////////
+        GameObject soundGameObject = new("2D Sound");
+        soundGameObject.transform.SetParent(transform);
+
+        AudioSource audioSource2d = soundGameObject.AddComponent<AudioSource>();
         audioSource2d.loop = soundClip.loop;
         audioSource2d.volume = soundClip.volume;
 
-
-        audioSource2d.PlayOneShot(soundClip.audioClip);
+        if (audioSource2d.loop)
+        {
+            audioSource2d.clip = soundClip.audioClip;
+            audioSource2d.Play();
+        }
+        else
+        {
+            audioSource2d.PlayOneShot(soundClip.audioClip);
+            Destroy(soundGameObject, soundClip.audioClip.length);
+        }
     }
 
     public void PlaySound(SoundName soundName, Vector3 position)
@@ -79,41 +83,93 @@ public class AudioManager : MonoBehaviour
         audioSource.loop = soundClip.loop;
         audioSource.volume = soundClip.volume;
         audioSource.spatialBlend = soundClip.spacialBlend;
-        audioSource.PlayOneShot(soundClip.audioClip);
 
-        Destroy(soundGameObject, soundClip.audioClip.length);
+        if (audioSource.loop)
+        {
+            audioSource.clip = soundClip.audioClip;
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.PlayOneShot(soundClip.audioClip);
+            Destroy(soundGameObject, soundClip.audioClip.length);
+        }
     }
 
-    public void PlaySceneMusic(SoundName soundName)
+    public void PlaySound(SoundName soundName, Transform parent)
     {
         SoundClip soundClip = GetAudioClip(soundName);
         if (soundClip == null || !CanPlaySound(soundClip))
             return;
 
-        if (sceneMusicAudioSource is null)
+        GameObject soundGameObject = new("3D Sound");
+        soundGameObject.transform.SetParent(parent);
+        soundGameObject.transform.localPosition = Vector3.zero;
+
+        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+        audioSource.loop = soundClip.loop;
+        audioSource.volume = soundClip.volume;
+        audioSource.spatialBlend = soundClip.spacialBlend;
+
+        if (audioSource.loop)
         {
-            sceneMusicAudioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.clip = soundClip.audioClip;
+            audioSource.Play();
         }
-
-        sceneMusicAudioSource.loop = true;
-        sceneMusicAudioSource.volume = soundClip.volume;
-        sceneMusicAudioSource.clip = soundClip.audioClip;
-
-        sceneMusicAudioSource.Play();
+        else
+        {
+            audioSource.PlayOneShot(soundClip.audioClip);
+            Destroy(soundGameObject, soundClip.audioClip.length);
+        }
     }
 
-    public void StopSceneMusic()
+    public void PlayBackgroundSounds(SoundName soundName, AudioSource audiosource)
     {
-        if (sceneMusicAudioSource is null)
+        SoundClip soundClip = GetAudioClip(soundName);
+        if (soundClip == null || !CanPlaySound(soundClip))
             return;
 
-        sceneMusicAudioSource.Stop();
+        if (audiosource == null)
+        {
+            audiosource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audiosource.loop = true;
+        audiosource.volume = soundClip.volume;
+        audiosource.clip = soundClip.audioClip;
+
+        audiosource.Play();
+    }
+
+    public void StopBackGroundSounds()
+    {
+        if (sceneMusicAudioSource != null)
+            sceneMusicAudioSource.Stop();
+
+        if (ambianceAudioSource != null)
+            ambianceAudioSource.Stop();
+    }
+
+    private void InitializeSoundTimers()
+    {
+        soundTimers = new Dictionary<SoundName, float>();
+        //foreach (SoundClip soundClip in soundLibrary.soundClips)
+        //{
+        //    if (soundClip.hasPlayTimer)
+        //        soundTimers[soundClip.soundName] = soundClip.playTimer;
+        //}
     }
 
     private bool CanPlaySound(SoundClip soundClip)
     {
         if (!soundClip.hasPlayTimer || !soundTimers.ContainsKey(soundClip.soundName))
+        {
+            if (soundClip.hasPlayTimer)
+                soundTimers[soundClip.soundName] = Time.time;
+
             return true;
+        }
+
 
         float lastTimePlayed = soundTimers[soundClip.soundName];
         if (Time.time > lastTimePlayed + soundClip.playTimer)
