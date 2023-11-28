@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.XR;
 
 public class IAEnemicRaycast: MonoBehaviour
 
@@ -29,7 +30,8 @@ public class IAEnemicRaycast: MonoBehaviour
         ObserverTarget,
         Following,
         AtackTarget,
-        ToInitialPosition
+        ToInitialPosition,
+        DistanceHit
     }
 
     private State state;
@@ -42,6 +44,7 @@ public class IAEnemicRaycast: MonoBehaviour
     //private Vector3 armaRotation;
 
     private Transform target;
+    private Transform posicioplayer;
 
     private float nextTimeToShoot = 0;
     private float shootRate = 2;
@@ -73,6 +76,7 @@ public class IAEnemicRaycast: MonoBehaviour
 
         if (hpsoldat > 0)
         {
+            
             switch (state)
             {
                 default:
@@ -148,6 +152,20 @@ public class IAEnemicRaycast: MonoBehaviour
                         agent.isStopped = false;
                         state = State.Following;
                     }
+                    break;
+
+                case State.DistanceHit:
+                    agent.SetDestination(posicioplayer.position);
+                    agent.speed = 9;
+                    if (agent.speed > 5)
+                    {
+                        enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
+                    }
+                    if (Vector3.Distance(transform.position, posicioplayer.position) < atackRange)
+                    {
+                        state = State.AtackTarget;
+                    }
+
                     break;
 
                 case State.ToInitialPosition:
@@ -250,6 +268,14 @@ public class IAEnemicRaycast: MonoBehaviour
     public void IsStop(bool stop)
     {
         agent.isStopped = stop;
+    }
+
+    public void AttackDistance(Transform player)
+    {
+        state = State.DistanceHit;
+        posicioplayer = player;
+        //agent.SetDestination(player.position);
+        //Debug.Log(player.position);
     }
 
 

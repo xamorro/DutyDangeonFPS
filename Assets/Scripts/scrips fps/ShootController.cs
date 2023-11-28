@@ -104,6 +104,8 @@ public class ShootController : MonoBehaviour
             {
                 //Agafam es component des pare de s'objecte impactat
                 StatsSoldat vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsSoldat>();
+                IAEnemicRaycast iaenemic = hit.transform.gameObject.GetComponentInParent<IAEnemicRaycast>();
+                iaenemic.AttackDistance(transform);
 
                 //Agafam es component de sa part des cos que hem impactat
                 PartsEnemics target = hit.transform.GetComponent<PartsEnemics>();
