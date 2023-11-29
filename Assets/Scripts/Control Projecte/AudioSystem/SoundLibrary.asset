@@ -44,7 +44,7 @@ MonoBehaviour:
   - soundName: 0
     audioClip: {fileID: 8300000, guid: 7da8044c860dd0249820708219d64e0b, type: 3}
     loop: 1
-    volume: 0.72
+    volume: 1
     hasPlayTimer: 0
     playTimer: 0.45412698
     spacialBlend: 0
