@@ -40,7 +40,7 @@ public class PlayerInputHandlerCC : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            shootController?.StartCoroutine(shootController?.Reload());
+            shootController?.HandleReload();    
         }
 
         float xMovement = Input.GetAxis("Horizontal");

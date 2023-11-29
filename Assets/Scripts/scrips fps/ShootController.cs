@@ -157,18 +157,25 @@ public class ShootController : MonoBehaviour
         }
     }
 
-    public IEnumerator Reload()
+    public void HandleReload()
     {
+        if (!Recargant)
+            StartCoroutine(Reload());   
+    }
+
+    private IEnumerator Reload()
+    {
+        Recargant = true;
         int balesConsumides = MAXMUNICIOCARGADOR - Cargador;
         //Debug.Log("Bales Consumides: " + balesConsumides);
         
-        if (Cargador == 0 && Municio == 0)
+        if (Municio == 0)
         {
             Debug.Log("No tens municio");
         }
         else if (balesConsumides != 0)
         {
-            Recargant = true;
+            
             armaAnimator.Play("Recarga");
             AudioManager.I.PlaySound(SoundName.ReloadAK);
         }
