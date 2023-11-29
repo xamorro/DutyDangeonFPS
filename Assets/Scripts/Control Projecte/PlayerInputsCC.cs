@@ -5,6 +5,7 @@ public class PlayerInputHandlerCC : MonoBehaviour
     private PlayerMovement movementController;
     //private LookController lookController;
     private ShootController shootController;
+    [SerializeField] private Pausa pause;
 
 
     private void Start()
@@ -41,6 +42,11 @@ public class PlayerInputHandlerCC : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R))
         {
             shootController?.HandleReload();    
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pause?.pause();
         }
 
         float xMovement = Input.GetAxis("Horizontal");
