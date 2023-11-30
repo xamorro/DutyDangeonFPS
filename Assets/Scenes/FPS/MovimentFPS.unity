@@ -15014,6 +15014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedf72dd9638d3d418cc18d6f760aabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseLook: {fileID: 394590439}
   menuPausa: {fileID: 617394562}
   isPaused: 0
 --- !u!4 &974181912 stripped

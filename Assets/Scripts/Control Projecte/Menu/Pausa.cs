@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Pausa : MonoBehaviour
 {
+    [SerializeField] private MouseLook mouseLook;
     [SerializeField] private GameObject menuPausa;
     public bool isPaused;
 
@@ -27,6 +28,7 @@ public class Pausa : MonoBehaviour
         Time.timeScale = 0.0f;
         isPaused = true;
         menuPausa.SetActive(true);
+        mouseLook.enabled = false;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         Debug.Log("Pause");
@@ -38,6 +40,7 @@ public class Pausa : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         menuPausa.SetActive(false);
+        mouseLook.enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
         Debug.Log("Resume");
@@ -45,7 +48,6 @@ public class Pausa : MonoBehaviour
 
     public void MenuPausa()
     {
-        Debug.Log("dasd");
         if (isPaused)
         {
             ResumeGame(); 
