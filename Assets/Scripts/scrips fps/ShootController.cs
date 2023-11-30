@@ -216,12 +216,14 @@ public class ShootController : MonoBehaviour
         resetAim = false;
         interpolator += Time.deltaTime / aimTime;
         LerpAim();
+        fpsCamera.fieldOfView = 30;
     }
 
     private void AimOut()
     {
         interpolator -= Time.deltaTime / aimTime;
         LerpAim();
+        fpsCamera.fieldOfView = 60;
 
         resetAim = interpolator > 0;
     }
@@ -229,6 +231,8 @@ public class ShootController : MonoBehaviour
     private void LerpAim()
     {
         weapon.position = Vector3.Lerp(weaponHolder.position, aimPoint.position, interpolator);
+        weapon.rotation = aimPoint.rotation;
+        fpsCamera.fieldOfView =  Mathf.Lerp(60, 40, interpolator);
     }
 
     public void SetAimOut()

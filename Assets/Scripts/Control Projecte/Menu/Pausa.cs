@@ -24,22 +24,22 @@ public class Pausa : MonoBehaviour
 
     public void PauseGame()
     {
+        Time.timeScale = 0.0f;
+        isPaused = true;
         menuPausa.SetActive(true);
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        Time.timeScale = 0.0f;
-        isPaused = true;
         Debug.Log("Pause");
 
     }
 
     public void ResumeGame()
     {
+        Time.timeScale = 1f;
+        isPaused = false;
         menuPausa.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
-        Time.timeScale = 1f;
-        isPaused = false;
         Debug.Log("Resume");
     }
 
