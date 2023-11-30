@@ -53,7 +53,6 @@ public class Pausa : MonoBehaviour
         else
         {
             PauseGame();
-
         }
     }
 

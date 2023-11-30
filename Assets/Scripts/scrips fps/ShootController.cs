@@ -22,6 +22,15 @@ public class ShootController : MonoBehaviour
     [SerializeField] float tempsreload = 1.5f;
     [SerializeField] int dañoarma = 9;
 
+    [Header("Apuntar Arma")]
+    [SerializeField] private Transform aimPoint;
+    [SerializeField] private Transform weapon;
+    [SerializeField] private Transform weaponHolder;
+    [SerializeField] private float aimTime = .3f;
+
+    private float interpolator;
+    private bool resetAim;
+
     //BALES I RECARREGUES
     private const int MAXMUNICIOCARGADOR = 30;
     private const int MAXMUNICIOARMA = 100;
@@ -31,10 +40,7 @@ public class ShootController : MonoBehaviour
     public static event Action<int> MunicioMaxModificada;
     private bool Recargant = false;
 
-    //PROVES LERP
-    private float tempsPasat;
-    private float duracioApuntat = 1f;
-    [SerializeField] GameObject posicioApuntat;
+
     private float nextShootTime = 0f;
 
     private Animator armaAnimator;
@@ -53,11 +59,15 @@ public class ShootController : MonoBehaviour
 
     private void Update()
     {
-        tempsPasat += Time.deltaTime;
         
 
         //Mos dibuixa un laser desde sa posicio de sa camera, cap a nes forward 
         Debug.DrawRay(fpsCamera.transform.position, fpsCamera.transform.forward * range, Color.red);
+
+        if (resetAim)
+        {
+            AimOut();
+        }
 
         if (Recargant)
         {
@@ -77,12 +87,6 @@ public class ShootController : MonoBehaviour
             PerformShoot();
             
         }
-    }
-
-    public void Apuntar()
-    {
-        float percentageComplete = tempsPasat / duracioApuntat;
-        arma.transform.position = Vector3.Lerp(arma.transform.position, posicioApuntat.transform.position, percentageComplete);
     }
 
     private void PerformShoot()
@@ -201,5 +205,34 @@ public class ShootController : MonoBehaviour
         MunicioMaxModificada?.Invoke(Municio);
         Recargant = false;
         
+
+    }
+
+    public void AimIn()
+    {
+        if (interpolator > 1)
+            return;
+
+        resetAim = false;
+        interpolator += Time.deltaTime / aimTime;
+        LerpAim();
+    }
+
+    private void AimOut()
+    {
+        interpolator -= Time.deltaTime / aimTime;
+        LerpAim();
+
+        resetAim = interpolator > 0;
+    }
+
+    private void LerpAim()
+    {
+        weapon.position = Vector3.Lerp(weaponHolder.position, aimPoint.position, interpolator);
+    }
+
+    public void SetAimOut()
+    {
+        resetAim = true;
     }
 }

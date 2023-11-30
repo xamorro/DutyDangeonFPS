@@ -29,14 +29,14 @@ public class PlayerInputHandlerCC : MonoBehaviour
             shootController?.Shoot();
         }
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButton("Fire2"))
         {
-            shootController?.Apuntar();
+            shootController.AimIn();
         }
 
         if (Input.GetButtonUp("Fire2"))
         {
-            shootController?.Apuntar();
+            shootController.SetAimOut();
         }
 
 
