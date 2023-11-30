@@ -5,7 +5,7 @@ public class PlayerInputHandlerCC : MonoBehaviour
     private PlayerMovement movementController;
     //private LookController lookController;
     private ShootController shootController;
-    [SerializeField] private Pausa pause;
+    private Pausa pause;
 
 
     private void Start()
@@ -13,6 +13,7 @@ public class PlayerInputHandlerCC : MonoBehaviour
         movementController = GetComponent<PlayerMovement>();
         //lookController = GetComponentInChildren<LookController>();
         shootController = GetComponentInChildren<ShootController>();
+        pause = GameObject.Find("CanvasJOC").GetComponent<Pausa>();
     }
 
 
@@ -44,9 +45,9 @@ public class PlayerInputHandlerCC : MonoBehaviour
             shootController?.HandleReload();    
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            pause?.pause();
+            pause?.MenuPausa();
         }
 
         float xMovement = Input.GetAxis("Horizontal");
