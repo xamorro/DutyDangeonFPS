@@ -13,6 +13,7 @@ public class ShootController : MonoBehaviour
     [SerializeField] Camera fpsCamera;
     [SerializeField] ParticleSystem fireFX;
     [SerializeField] GameObject impactFX;
+    [SerializeField] GameObject bloodFX;
     [SerializeField] private GameObject arma;
 
     [Header("No impacta")]
@@ -150,12 +151,30 @@ public class ShootController : MonoBehaviour
             if (hit.distance <= range)
             {
                 //IMPACTE - Si tenim un objecte de impacte fe aixó
-                if (impactFX != null)
+                if (impactFX != null && hit.transform.root.gameObject.CompareTag("Estructura"))
                 {
-                    Vector3 bulletDirection = hit.point - fpsCamera.transform.position;
-                    Quaternion bulletRotation = Quaternion.LookRotation(bulletDirection.normalized);
-                    GameObject impact = Instantiate(impactFX, hit.point, bulletRotation);
-                    Destroy(impact, 2f);
+                    GameObject impact = Instantiate(impactFX, hit.point, Quaternion.LookRotation(hit.normal));
+                    impact.transform.position += impact.transform.forward / 1000;
+                    Destroy(impact, 5f);
+
+                    //-------per si o vull instancia cap a sa direcio on apuntava. ----////
+                    //Vector3 bulletDirection = hit.point - fpsCamera.transform.position;
+
+                    //Quaternion bulletRotation = Quaternion.LookRotation(bulletDirection.normalized);
+
+                    //GameObject impact = Instantiate(impactFX, hit.point, bulletRotation);
+                }
+                else if (impactFX != null && hit.transform.root.gameObject.CompareTag("Enemigo"))
+                {
+                    //-------per si o vull instancia cap a sa direcio on apunta. ----////
+                    Vector3 bloodDirection = hit.point - fpsCamera.transform.position;
+                    Quaternion bloodRotation = Quaternion.LookRotation(bloodDirection.normalized);
+                    GameObject impact = Instantiate(bloodFX, hit.point, bloodRotation);
+                    Destroy(impact, 5f);
+
+                    //GameObject impact = Instantiate(bloodFX, hit.point, Quaternion.LookRotation(hit.normal));
+                    //impact.transform.position += impact.transform.forward / 1000;
+                    //Destroy(impact, 5f);
                 }
             }
         }
