@@ -8,16 +8,22 @@ public class StatsPlayer : MonoBehaviour
 {
     //TEXTE PER PANTALLA
     [SerializeField] private TextMeshProUGUI InfoVida;
+    
+    private Mort mort;
 
     public static event Action<float> VidaModificada;
 
     public float VidaPlayer = 100f;
+    public bool isDeath;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         VidaModificada?.Invoke(VidaPlayer);
+        isDeath = false;
+        mort = GameObject.Find("CanvasJOC").GetComponent<Mort>();
     }
 
     // Update is called once per frame
@@ -33,8 +39,15 @@ public class StatsPlayer : MonoBehaviour
 
         if (VidaPlayer <= 0f)
         {
-            VidaModificada?.Invoke(0);
-            Debug.Log("Has mort");
+            DeathMenu();
         }
+    }
+
+
+    private void DeathMenu()
+    {
+        VidaModificada?.Invoke(0);
+        mort?.MenuDeath();
+        Debug.Log("Has mort");
     }
 }
