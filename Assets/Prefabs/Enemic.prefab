@@ -2332,6 +2332,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   VidaSoldat: 100
   soldat: {fileID: 3496738044132039758}
+  dropMunicio: 0
+  municio: {fileID: 1202455725050152465, guid: 119796c9d8bba4246af255ad56ed30b2, type: 3}
 --- !u!114 &1011707812802249942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2411,12 +2413,14 @@ MonoBehaviour:
   patrolMaxRange: 15
   patrolMinRange: 5
   atackRange: 12.5
+  "armaDa\xF1o": 8
   FollowingRange: 20.8
   bulletPrefab: {fileID: 5960086880828796628, guid: e0e2364df02070e4a9570b82e28bfcf1,
     type: 3}
   LayerPersonatge:
     serializedVersion: 2
     m_Bits: 8
+  sniper: 0
   prepoint: {fileID: 0}
   point: {fileID: 0}
   visorPoint: {fileID: 6363413328328893652}

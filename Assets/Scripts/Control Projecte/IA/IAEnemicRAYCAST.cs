@@ -16,7 +16,9 @@ public class IAEnemicRaycast: MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private LayerMask LayerPersonatge;
+    [SerializeField] private bool sniper;
 
+    private float vidaSoldat;
 
     [SerializeField] private Transform prepoint;
     [SerializeField] private Transform point;
@@ -73,8 +75,9 @@ public class IAEnemicRaycast: MonoBehaviour
 
         StatsSoldat statssoldat = GetComponent<StatsSoldat>();
         float hpsoldat = statssoldat.VidaSoldat;
+        
 
-        if (hpsoldat > 0)
+        if (hpsoldat > 0 && !sniper)
         {
             
             switch (state)
@@ -175,7 +178,25 @@ public class IAEnemicRaycast: MonoBehaviour
                     break;
             }
         }
+        else if (sniper)
+        {
+            GetComponent<FieldOfView>().detectionRange = 40;
+            vidaSoldat = GetComponent<StatsSoldat>().VidaSoldat;
+            agent.isStopped = true;
+            LookTarget();
+            if (vision.canSeePlayer && vidaSoldat > 0)
+            {
+                ShootTimer();
+                enemicgo.GetComponent<Animator>().Play("DisparAturat");
+            }
+            if (Vector3.Distance(transform.position, target.position) > atackRange)
+            {
+                agent.isStopped = false;
+                state = State.Following;
+            }
+        }
     }
+
 
     private Vector3 GetPatrolPosition()
     {

@@ -36,7 +36,7 @@ public class ShootController : MonoBehaviour
     private const int MAXMUNICIOCARGADOR = 30;
     private const int MAXMUNICIOARMA = 100;
     private int Cargador;
-    private int Municio;
+    public int Municio;
     public static event Action<int> MunicioModificada;
     public static event Action<int> MunicioMaxModificada;
     private bool Recargant = false;
@@ -235,7 +235,7 @@ public class ShootController : MonoBehaviour
         resetAim = false;
         interpolator += Time.deltaTime / aimTime;
         LerpAim();
-        fpsCamera.fieldOfView = 30;
+        fpsCamera.fieldOfView = 40;
     }
 
     private void AimOut()
@@ -251,11 +251,18 @@ public class ShootController : MonoBehaviour
     {
         weapon.position = Vector3.Lerp(weaponHolder.position, aimPoint.position, interpolator);
         weapon.rotation = aimPoint.rotation;
-        fpsCamera.fieldOfView =  Mathf.Lerp(60, 40, interpolator);
+        fpsCamera.fieldOfView =  Mathf.Lerp(fpsCamera.fieldOfView, 40, interpolator);
     }
 
     public void SetAimOut()
     {
         resetAim = true;
+    }
+
+    //Municio Replegada dels enemics
+    public void AddMunicioEnemic(int municio)
+    {
+        Municio = Municio + municio;
+        MunicioMaxModificada?.Invoke(Municio);
     }
 }

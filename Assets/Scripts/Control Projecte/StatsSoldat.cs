@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatsSoldat : MonoBehaviour
 {
     public float VidaSoldat = 50f;
     public GameObject soldat;
     private IAEnemicRaycast IAEnemic;
+    [SerializeField] private bool dropMunicio;
+    [SerializeField] private GameObject municio;
 
 
     // Start is called before the first frame update
@@ -28,7 +31,12 @@ public class StatsSoldat : MonoBehaviour
 
             //Cridam una funcio que está dins un altre escript de l'enemic i li deim que se posi true per  aturar l'enemic desde la navmesh.
             IAEnemic.IsStop(true);
-
+            if (dropMunicio) 
+            {
+                Debug.Log("Municio Mollada");
+                Instantiate(municio, transform.position, Quaternion.identity);
+            }
+            
             //Eliminam l'enemic pasat 5 segons
             Destroy(gameObject, 5);
 
