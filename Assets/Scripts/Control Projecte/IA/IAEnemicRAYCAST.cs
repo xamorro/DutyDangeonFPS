@@ -87,14 +87,14 @@ public class IAEnemicRaycast : MonoBehaviour
 
                 GetComponent<FieldOfView>().detectionRange = 60;
                 agent.isStopped = true;
-                Debug.Log(vision.canSeePlayer);
-                Debug.Log(vistPrimerPic);
+                //Debug.Log(vision.canSeePlayer);
+                //Debug.Log(vistPrimerPic);
                 LookTarget();
                 if (vision.canSeePlayer)
                 {
                     if (!vistPrimerPic)
                     {
-                        StartCoroutine(ExampleCoroutine());
+                        StartCoroutine(dispar());
                         vistPrimerPic = true;
                         
                     }
@@ -152,8 +152,9 @@ public class IAEnemicRaycast : MonoBehaviour
                         break;
 
                     case State.Following:
-                        agent.SetDestination(target.position);
+
                         agent.speed = 9;
+                        agent.SetDestination(target.position);
                         if (agent.speed > 5)
                         {
                             enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
@@ -179,10 +180,20 @@ public class IAEnemicRaycast : MonoBehaviour
                         LookTarget();
                         if (vision.canSeePlayer)
                         {
-                            ShootTimer();
-                            enemicgo.GetComponent<Animator>().Play("DisparAturat");
+                            if (!vistPrimerPic)
+                            {
+                                StartCoroutine(dispar());
+                                vistPrimerPic = true;
+
+                            }
+                            else
+                            {
+                                vistPrimerPic = false;
+                            }
+                            //ShootTimer();
+                            //enemicgo.GetComponent<Animator>().Play("DisparAturat");
                         }
-                        if (Vector3.Distance(transform.position, target.position) > atackRange)
+                        else if (Vector3.Distance(transform.position, target.position) > atackRange)
                         {
                             agent.isStopped = false;
                             state = State.Following;
@@ -264,7 +275,6 @@ public class IAEnemicRaycast : MonoBehaviour
     {
         if (Time.time > nextTimeToShoot)
         {
-            Debug.Log("dispara");
             PerformShoot();
             nextTimeToShoot = Time.time + 1 / shootRate;
             //Debug.DrawRay(visorPoint.transform.position, visorPoint.transform.forward, Color.green);
@@ -275,14 +285,18 @@ public class IAEnemicRaycast : MonoBehaviour
 
     private void PerformShoot()
     {
-        float randomnumber = Random.Range(1.2f, -1.2f);
+        float randomnumber = Random.Range(2.2f, -2.2f);
         if (Physics.Raycast(IniciDispar.transform.position + new Vector3(0f, randomnumber, 0f), IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
         {
+            //SENSE AQUESTES 2 LINEES ME DISPARA INCLUS ESTANT MORT. 
+            StatsSoldat statssoldat = GetComponent<StatsSoldat>();
+            float hpsoldat = statssoldat.VidaSoldat;
+            //--------------------------------------
 
-            if (hit.transform.gameObject.CompareTag("Player"))
+            if (hit.transform.gameObject.CompareTag("Player") && hpsoldat > 0)
             {
                 enemicgo.GetComponent<Animator>().SetBool("dispar", true);
-                Debug.Log("jugador ferit");
+                //Debug.Log("jugador ferit");
                 //Agafam es component des pare de s'objecte impactat
                 StatsPlayer vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsPlayer>();
                 vidasoldat.DañoRecibido(armaDaño);
@@ -317,21 +331,18 @@ public class IAEnemicRaycast : MonoBehaviour
     }
 
 
-    IEnumerator ExampleCoroutine()
+    IEnumerator dispar()
     {
-        //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(2);
-        
+       //Espera de segons abans de començar a disparar
+        yield return new WaitForSeconds(0.9f);
+
         while (vision.canSeePlayer)
         {
+            Debug.Log("Som aqui");
             ShootTimer();
             
             yield return null;
         }
-        
-
-        //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-
+       
     }
 }
