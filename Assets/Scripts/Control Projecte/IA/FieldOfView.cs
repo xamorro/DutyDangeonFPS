@@ -21,6 +21,7 @@ public class FieldOfView : MonoBehaviour
 
     //LayerMask del gameObjects que poden obstruïr la visió
     [SerializeField] private LayerMask obstructionMask;
+    [SerializeField] private Transform startVision;
 
     private void Start()
     {
@@ -64,9 +65,9 @@ public class FieldOfView : MonoBehaviour
             // nostre vector de forward no es suspera la meitat de l'angle de detecció
             if (Vector3.Angle(transform.forward, directionToTarget) < coneAngle / 2)
             {
-                
 
-                canSeePlayer = !Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask);
+                
+                canSeePlayer = !Physics.Raycast(startVision.position, directionToTarget, distanceToTarget, obstructionMask);
                     
             }
             else
@@ -77,5 +78,6 @@ public class FieldOfView : MonoBehaviour
             canSeePlayer = false;
         }
     }
+
 
 }

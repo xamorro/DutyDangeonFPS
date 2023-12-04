@@ -27,6 +27,8 @@ public class StatsSoldat : MonoBehaviour
 
 
             //A sa animacio die li posam true i fará que s'activi.
+            soldat.GetComponent<Animator>().SetBool("dispar", false);
+            IAEnemic.enabled = false;
             soldat.GetComponent<Animator>().SetBool("die", true);
 
             //Cridam una funcio que está dins un altre escript de l'enemic i li deim que se posi true per  aturar l'enemic desde la navmesh.

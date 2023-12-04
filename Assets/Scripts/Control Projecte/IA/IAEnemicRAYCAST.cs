@@ -2,9 +2,10 @@ using System.Runtime.CompilerServices;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 using UnityEngine.XR;
 
-public class IAEnemicRaycast: MonoBehaviour
+public class IAEnemicRaycast : MonoBehaviour
 
 {
     [SerializeField] private GameObject enemicgo;
@@ -48,8 +49,10 @@ public class IAEnemicRaycast: MonoBehaviour
     private Transform target;
     private Transform posicioplayer;
 
+    private bool vistPrimerPic = false;
+
     private float nextTimeToShoot = 0;
-    private float shootRate = 2;
+    private float shootRate = 1;
 
     private void Awake()
     {
@@ -63,7 +66,7 @@ public class IAEnemicRaycast: MonoBehaviour
         target = vision.target;
         initialPosition = transform.position;
         patrolPosition = GetPatrolPosition();
-        
+
         //armaPosition = arma.localPosition;
         //armaRotation = arma.localEulerAngles;
     }
@@ -75,124 +78,137 @@ public class IAEnemicRaycast: MonoBehaviour
 
         StatsSoldat statssoldat = GetComponent<StatsSoldat>();
         float hpsoldat = statssoldat.VidaSoldat;
-        
 
-        if (hpsoldat > 0 && !sniper)
+
+        if (hpsoldat > 0)
         {
-            
-            switch (state)
+            if (sniper)
             {
-                default:
-                case State.Patroling:
-                    agent.SetDestination(patrolPosition);
-                    agent.speed = 2;
-                    //arma.localPosition = armaPosition;
-                    //arma.localEulerAngles = armaRotation;
 
-                    if (agent.remainingDistance < 1f)
-                        patrolPosition = GetPatrolPosition();
-
-                    if (agent.speed < 5)
+                GetComponent<FieldOfView>().detectionRange = 60;
+                agent.isStopped = true;
+                Debug.Log(vision.canSeePlayer);
+                Debug.Log(vistPrimerPic);
+                LookTarget();
+                if (vision.canSeePlayer)
+                {
+                    if (!vistPrimerPic)
                     {
-                        enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
+                        StartCoroutine(ExampleCoroutine());
+                        vistPrimerPic = true;
+                        
                     }
+                }
+                else
+                {
+                    vistPrimerPic = false;
+                }
+                //if (Vector3.Distance(transform.position, target.position) > atackRange)
+                //{
+                //    agent.isStopped = false;
+                //    state = State.Following;
+                //}
 
-                    FindTarget();
-                    break;
-
-                case State.ObserverTarget:
-                    agent.isStopped = true;
-                    enemicgo.GetComponent<Animator>().Play("RifleIdle");
-
-                    LookTarget();
-                    if (Vector3.Distance(transform.position, target.position) <= FollowingRange)
-                    {
-                        agent.isStopped = false;
-                        state = State.Following;
-                    }
-
-                    if (Vector3.Distance(transform.position, target.position) > vision.detectionRange)
-                    {
-                        agent.isStopped = false;
-                        state = State.ToInitialPosition;
-                    }
-
-                    break;
-
-                case State.Following:
-                    agent.SetDestination(target.position);
-                    agent.speed = 9;
-                    if (agent.speed > 5)
-                    {
-                        enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
-                    }
-                    if (!vision.canSeePlayer)
-                    {
-                        state = State.ToInitialPosition;
-                    }
-                    if (Vector3.Distance(transform.position, target.position) <= atackRange)
-                    {
-                        state = State.AtackTarget;
-                    }
-
-                    if (Vector3.Distance(transform.position, target.position) > FollowingRange)
-                    {
-                        state = State.ObserverTarget;
-                    }
-
-                    break;
-
-                case State.AtackTarget:
-                    agent.isStopped = true;
-                    LookTarget();
-                    if (vision.canSeePlayer)
-                    {
-                        ShootTimer();
-                        enemicgo.GetComponent<Animator>().Play("DisparAturat");
-                    }
-                    if (Vector3.Distance(transform.position, target.position) > atackRange)
-                    {
-                        agent.isStopped = false;
-                        state = State.Following;
-                    }
-                    break;
-
-                case State.DistanceHit:
-                    agent.SetDestination(posicioplayer.position);
-                    agent.speed = 9;
-                    if (agent.speed > 5)
-                    {
-                        enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
-                    }
-                    if (Vector3.Distance(transform.position, posicioplayer.position) < atackRange)
-                    {
-                        state = State.AtackTarget;
-                    }
-
-                    break;
-
-                case State.ToInitialPosition:
-                    agent.SetDestination(initialPosition);
-                    if (agent.remainingDistance < 1f)
-                        state = State.Patroling;
-                    break;
             }
-        }
-        else if (sniper)
-        {
-            GetComponent<FieldOfView>().detectionRange = 40;
-            vidaSoldat = GetComponent<StatsSoldat>().VidaSoldat;
-            agent.isStopped = true;
-            LookTarget();
-            if (vision.canSeePlayer && vidaSoldat > 0)
+            else
             {
-                ShootTimer();
-                enemicgo.GetComponent<Animator>().Play("DisparAturat");
-            }
-            if (Vector3.Distance(transform.position, target.position) > atackRange)
-            {
-                agent.isStopped = false;
-                state = State.Following;
+                switch (state)
+                {
+                    default:
+                    case State.Patroling:
+                        agent.SetDestination(patrolPosition);
+                        agent.speed = 2;
+                        //arma.localPosition = armaPosition;
+                        //arma.localEulerAngles = armaRotation;
+
+                        if (agent.remainingDistance < 1f)
+                            patrolPosition = GetPatrolPosition();
+
+                        if (agent.speed < 5)
+                        {
+                            enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
+                        }
+
+                        FindTarget();
+                        break;
+
+                    case State.ObserverTarget:
+                        agent.isStopped = true;
+                        enemicgo.GetComponent<Animator>().Play("RifleIdle");
+
+                        LookTarget();
+                        if (Vector3.Distance(transform.position, target.position) <= FollowingRange)
+                        {
+                            agent.isStopped = false;
+                            state = State.Following;
+                        }
+
+                        if (Vector3.Distance(transform.position, target.position) > vision.detectionRange)
+                        {
+                            agent.isStopped = false;
+                            state = State.ToInitialPosition;
+                        }
+
+                        break;
+
+                    case State.Following:
+                        agent.SetDestination(target.position);
+                        agent.speed = 9;
+                        if (agent.speed > 5)
+                        {
+                            enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
+                        }
+                        if (!vision.canSeePlayer)
+                        {
+                            state = State.ToInitialPosition;
+                        }
+                        if (Vector3.Distance(transform.position, target.position) <= atackRange)
+                        {
+                            state = State.AtackTarget;
+                        }
+
+                        if (Vector3.Distance(transform.position, target.position) > FollowingRange)
+                        {
+                            state = State.ObserverTarget;
+                        }
+
+                        break;
+
+                    case State.AtackTarget:
+                        agent.isStopped = true;
+                        LookTarget();
+                        if (vision.canSeePlayer)
+                        {
+                            ShootTimer();
+                            enemicgo.GetComponent<Animator>().Play("DisparAturat");
+                        }
+                        if (Vector3.Distance(transform.position, target.position) > atackRange)
+                        {
+                            agent.isStopped = false;
+                            state = State.Following;
+                        }
+                        break;
+
+                    case State.DistanceHit:
+                        agent.SetDestination(posicioplayer.position);
+                        agent.speed = 9;
+                        if (agent.speed > 5)
+                        {
+                            enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
+                        }
+                        if (Vector3.Distance(transform.position, posicioplayer.position) < atackRange)
+                        {
+                            state = State.AtackTarget;
+                        }
+
+                        break;
+
+                    case State.ToInitialPosition:
+                        agent.SetDestination(initialPosition);
+                        if (agent.remainingDistance < 1f)
+                            state = State.Patroling;
+                        break;
+                }
             }
         }
     }
@@ -262,15 +278,16 @@ public class IAEnemicRaycast: MonoBehaviour
         float randomnumber = Random.Range(1.2f, -1.2f);
         if (Physics.Raycast(IniciDispar.transform.position + new Vector3(0f, randomnumber, 0f), IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
         {
-            
-            if (hit.transform.root.gameObject.CompareTag("Player"))
+
+            if (hit.transform.gameObject.CompareTag("Player"))
             {
+                enemicgo.GetComponent<Animator>().SetBool("dispar", true);
                 Debug.Log("jugador ferit");
                 //Agafam es component des pare de s'objecte impactat
                 StatsPlayer vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsPlayer>();
                 vidasoldat.DañoRecibido(armaDaño);
             }
-                
+
         }
     }
 
@@ -300,4 +317,21 @@ public class IAEnemicRaycast: MonoBehaviour
     }
 
 
+    IEnumerator ExampleCoroutine()
+    {
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(2);
+        
+        while (vision.canSeePlayer)
+        {
+            ShootTimer();
+            
+            yield return null;
+        }
+        
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+
+    }
 }
