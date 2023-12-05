@@ -36,6 +36,7 @@ public class StatsSoldat : MonoBehaviour
             if (dropMunicio) 
             {
                 Debug.Log("Municio Mollada");
+                transform.position = new Vector3(transform.position.x, 0.2f, transform.position.z);
                 Instantiate(municio, transform.position, Quaternion.identity);
             }
             

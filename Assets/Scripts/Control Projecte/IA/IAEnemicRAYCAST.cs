@@ -54,10 +54,17 @@ public class IAEnemicRaycast : MonoBehaviour
     private float nextTimeToShoot = 0;
     private float shootRate = 1;
 
+    private Animator animator;
+
+    private float waitTimer = 0;
+
+    private bool dispar = false;
+
     private void Awake()
     {
         vision = GetComponent<FieldOfView>();
         agent = GetComponent<NavMeshAgent>();
+        animator = enemicgo.GetComponent<Animator>();
     }
 
     private void Start()
@@ -73,6 +80,7 @@ public class IAEnemicRaycast : MonoBehaviour
 
     private void Update()
     {
+        dispar = false;
         //Raycast dispar fora cap random
         Debug.DrawRay(IniciDispar.transform.position, IniciDispar.transform.forward * 100, Color.red);
 
@@ -92,17 +100,17 @@ public class IAEnemicRaycast : MonoBehaviour
                 LookTarget();
                 if (vision.canSeePlayer)
                 {
-                    if (!vistPrimerPic)
+                    waitTimer += Time.deltaTime;
+                    if (waitTimer >= 2)
                     {
-                        StartCoroutine(dispar());
-                        vistPrimerPic = true;
-                        
+                        ShootTimer();
                     }
                 }
                 else
                 {
-                    vistPrimerPic = false;
+                    waitTimer = 0;
                 }
+
                 //if (Vector3.Distance(transform.position, target.position) > atackRange)
                 //{
                 //    agent.isStopped = false;
@@ -112,6 +120,7 @@ public class IAEnemicRaycast : MonoBehaviour
             }
             else
             {
+                animator.SetFloat("run", agent.velocity.magnitude);
                 switch (state)
                 {
                     default:
@@ -124,17 +133,13 @@ public class IAEnemicRaycast : MonoBehaviour
                         if (agent.remainingDistance < 1f)
                             patrolPosition = GetPatrolPosition();
 
-                        if (agent.speed < 5)
-                        {
-                            enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
-                        }
+                       
 
                         FindTarget();
                         break;
 
                     case State.ObserverTarget:
                         agent.isStopped = true;
-                        enemicgo.GetComponent<Animator>().Play("RifleIdle");
 
                         LookTarget();
                         if (Vector3.Distance(transform.position, target.position) <= FollowingRange)
@@ -157,7 +162,7 @@ public class IAEnemicRaycast : MonoBehaviour
                         agent.SetDestination(target.position);
                         if (agent.speed > 5)
                         {
-                            enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
+                            //animator.SetFloat("run", agent.speed);
                         }
                         if (!vision.canSeePlayer)
                         {
@@ -168,10 +173,10 @@ public class IAEnemicRaycast : MonoBehaviour
                             state = State.AtackTarget;
                         }
 
-                        if (Vector3.Distance(transform.position, target.position) > FollowingRange)
-                        {
-                            state = State.ObserverTarget;
-                        }
+                        //if (Vector3.Distance(transform.position, target.position) > FollowingRange)
+                        //{
+                        //    state = State.ObserverTarget;
+                        //}
 
                         break;
 
@@ -180,24 +185,28 @@ public class IAEnemicRaycast : MonoBehaviour
                         LookTarget();
                         if (vision.canSeePlayer)
                         {
-                            if (!vistPrimerPic)
+                            waitTimer += Time.deltaTime;
+                            if (waitTimer >= 2)
                             {
-                                StartCoroutine(dispar());
-                                vistPrimerPic = true;
-
+                                ShootTimer();
                             }
-                            else
+                            if (Vector3.Distance(transform.position, target.position) > atackRange)
                             {
-                                vistPrimerPic = false;
+                                agent.isStopped = false;
+                                state = State.Following;
                             }
+                        }
+                        else
+                        {
+                            waitTimer = 0;
+                        
+                            vistPrimerPic = false;
+                            
+                            
                             //ShootTimer();
                             //enemicgo.GetComponent<Animator>().Play("DisparAturat");
                         }
-                        else if (Vector3.Distance(transform.position, target.position) > atackRange)
-                        {
-                            agent.isStopped = false;
-                            state = State.Following;
-                        }
+
                         break;
 
                     case State.DistanceHit:
@@ -205,7 +214,7 @@ public class IAEnemicRaycast : MonoBehaviour
                         agent.speed = 9;
                         if (agent.speed > 5)
                         {
-                            enemicgo.GetComponent<Animator>().SetFloat("run", agent.speed);
+                            animator.SetFloat("run", agent.velocity.magnitude);
                         }
                         if (Vector3.Distance(transform.position, posicioplayer.position) < atackRange)
                         {
@@ -222,6 +231,8 @@ public class IAEnemicRaycast : MonoBehaviour
                 }
             }
         }
+
+        animator.SetBool("dispar", dispar);
     }
 
 
@@ -273,6 +284,7 @@ public class IAEnemicRaycast : MonoBehaviour
 
     private void ShootTimer()
     {
+        dispar = true;
         if (Time.time > nextTimeToShoot)
         {
             PerformShoot();
@@ -295,7 +307,8 @@ public class IAEnemicRaycast : MonoBehaviour
 
             if (hit.transform.gameObject.CompareTag("Player") && hpsoldat > 0)
             {
-                enemicgo.GetComponent<Animator>().SetBool("dispar", true);
+
+                
                 //Debug.Log("jugador ferit");
                 //Agafam es component des pare de s'objecte impactat
                 StatsPlayer vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsPlayer>();
@@ -331,18 +344,5 @@ public class IAEnemicRaycast : MonoBehaviour
     }
 
 
-    IEnumerator dispar()
-    {
-       //Espera de segons abans de començar a disparar
-        yield return new WaitForSeconds(0.9f);
-
-        while (vision.canSeePlayer)
-        {
-            Debug.Log("Som aqui");
-            ShootTimer();
-            
-            yield return null;
-        }
-       
-    }
+    
 }
