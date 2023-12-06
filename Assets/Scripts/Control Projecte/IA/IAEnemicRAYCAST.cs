@@ -14,7 +14,7 @@ public class IAEnemicRaycast : MonoBehaviour
     [SerializeField] private float atackRange = 18;
     [SerializeField] private float armaDaño = 8;
     [SerializeField] private float FollowingRange = 30;
-    [SerializeField] private GameObject bulletPrefab;
+    //[SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private LayerMask LayerPersonatge;
     [SerializeField] private bool sniper;

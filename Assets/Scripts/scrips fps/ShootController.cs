@@ -33,10 +33,11 @@ public class ShootController : MonoBehaviour
     private bool resetAim;
 
     //BALES I RECARREGUES
-    private const int MAXMUNICIOCARGADOR = 30;
-    private const int MAXMUNICIOARMA = 100;
+    [Header("Arma")]
+    [SerializeField] private  int MAXMUNICIOCARGADOR = 30;
+    [SerializeField] private  int MAXMUNICIOARMA = 80;
     private int Cargador;
-    public int Municio;
+    private int Municio;
     public static event Action<int> MunicioModificada;
     public static event Action<int> MunicioMaxModificada;
     private bool Recargant = false;

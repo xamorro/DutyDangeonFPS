@@ -29,7 +29,10 @@ public class StatsPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.position.y < -80)
+        {
+            DeathMenu();
+        }
     }
 
     public void DañoRecibido(float cantidad)
