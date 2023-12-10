@@ -19,7 +19,7 @@ public class key : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AudioManager.I.PlaySound(SoundName.KeyFind, transform.position);
+        //AudioManager.I.PlaySound(SoundName.KeyFind, transform.position);
     }
 
     private void OnTriggerEnter(Collider other)

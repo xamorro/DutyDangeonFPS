@@ -38,13 +38,15 @@ public class ValuesController : MonoBehaviour
 
     private void UpdateAmmo(int ammo)
     {
-        municio.text = ammo.ToString();
+        
         if (ammo < 10)
         {
+            municio.text = "0"+ammo.ToString();
             municio.color = Color.red;
         }
         else
         {
+            municio.text = ammo.ToString();
             municio.color = Color.white;
         }
     }
@@ -52,6 +54,19 @@ public class ValuesController : MonoBehaviour
     private void MaxUpdateAmmo(int ammo)
     {
         maxMunicio.text = ammo.ToString();
+        if (ammo < 10)
+        {
+            maxMunicio.text = "0" + ammo.ToString();
+            if (ammo == 0)
+            {
+                maxMunicio.color = Color.red;
+            }
+        }
+        else
+        {
+            maxMunicio.text = ammo.ToString();
+            maxMunicio.color = Color.white;
+        }
     }
 
     private void UpdateVida(float vida)

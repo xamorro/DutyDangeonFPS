@@ -54,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         
         ApplyGravity();
 
+        //Debug.Log(controller.velocity.magnitude);
 
         //Si grounded es true i sa velocitat és < 0, posa sa posició Y a -2. Ja que si no o feim, sa gravetat sempre va augmentant es valor cap abaix.
         if (controller.isGrounded && jumpVelocity.y < 0)

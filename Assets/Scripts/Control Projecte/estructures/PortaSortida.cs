@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PortaSortida : MonoBehaviour
 {
     [SerializeField] private GameObject clauCanvas;
+    [SerializeField] private GameObject infoCanvas;
     [SerializeField] private TextMeshProUGUI InfoZona;
-
+    
+    private Image panelInfo;
     public Animator animator;
     private bool obert = false;
+
+    private void Start()
+    {
+        panelInfo = infoCanvas.GetComponentInChildren<Image>();
+    }
+    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -19,22 +28,36 @@ public class PortaSortida : MonoBehaviour
         {
             obert = true;
             animator.SetTrigger("Obert");
-            StartCoroutine(Texte());
             clauCanvas.SetActive(false);
 
 
         }
         else if (obert == false)
         {
-            Debug.Log("Necesitas una llave!");
+            StartCoroutine(Texte("You need a Key"));
         }
 
     }
-    public IEnumerator Texte()
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (obert == true)
+        {
+            StartCoroutine(Texte("Thanks for playing!"));
+        }
+        
+    }
+
+
+    public IEnumerator Texte(string texte)
     {
         InfoZona.enabled = true;
-        InfoZona.text = ("FIN - ESCAPASTES");
-        yield return new WaitForSeconds(3);
+        panelInfo.enabled = true;
+        InfoZona.text = (texte);
+
+        yield return new WaitForSeconds(2);
+
         InfoZona.enabled = false;
+        panelInfo.enabled = false;
     }
 }
