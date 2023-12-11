@@ -13,6 +13,8 @@ public class Pausa : MonoBehaviour
     [SerializeField] Slider soundSlider;
     [SerializeField] Slider soundFX;
 
+    [SerializeField] SoundLibrary soundLibrary;
+
     public bool isPaused;
 
     // Start is called before the first frame update
@@ -20,6 +22,7 @@ public class Pausa : MonoBehaviour
     {
         menuPausa.SetActive(false);
         isPaused = false;
+        soundFX.value = soundLibrary.fxVolume;
 }
 
     // Update is called once per frame
@@ -79,6 +82,10 @@ public class Pausa : MonoBehaviour
         menuPausa.SetActive(false);
     }
 
+    public void ChangeSoundFX()
+    {
+        soundLibrary.fxVolume = soundFX.value;
+    }
 
     public void ToMainMenu()
     {

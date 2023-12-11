@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     private readonly AudioSource sceneMusicAudioSource;
     private readonly AudioSource ambianceAudioSource;
 
+
     private void Awake()
     {
         if (I == null)
@@ -56,7 +57,7 @@ public class AudioManager : MonoBehaviour
 
         AudioSource audioSource2d = soundGameObject.AddComponent<AudioSource>();
         audioSource2d.loop = soundClip.loop;
-        audioSource2d.volume = soundClip.volume;
+        audioSource2d.volume = soundClip.volume  * soundLibrary.fxVolume / 100;
 
         if (audioSource2d.loop)
         {
@@ -81,7 +82,7 @@ public class AudioManager : MonoBehaviour
 
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.loop = soundClip.loop;
-        audioSource.volume = soundClip.volume;
+        audioSource.volume = soundClip.volume * soundLibrary.fxVolume / 100;
         audioSource.spatialBlend = soundClip.spacialBlend;
 
         if (audioSource.loop)
@@ -108,7 +109,7 @@ public class AudioManager : MonoBehaviour
 
         AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
         audioSource.loop = soundClip.loop;
-        audioSource.volume = soundClip.volume;
+        audioSource.volume = soundClip.volume * soundLibrary.fxVolume / 100;
         audioSource.spatialBlend = soundClip.spacialBlend;
 
         if (audioSource.loop)
@@ -135,7 +136,7 @@ public class AudioManager : MonoBehaviour
         }
 
         audiosource.loop = true;
-        audiosource.volume = soundClip.volume;
+        audiosource.volume = soundClip.volume * soundLibrary.fxVolume / 100;
         audiosource.clip = soundClip.audioClip;
 
         audiosource.Play();

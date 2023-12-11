@@ -1,10 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SocialPlatforms;
-using UnityEditor.ShaderGraph;
 
 public class ValuesController : MonoBehaviour
 {

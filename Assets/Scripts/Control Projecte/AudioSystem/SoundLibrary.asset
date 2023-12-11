@@ -48,3 +48,4 @@ MonoBehaviour:
     hasPlayTimer: 0
     playTimer: 0.45412698
     spacialBlend: 0
+  fxVolume: 5

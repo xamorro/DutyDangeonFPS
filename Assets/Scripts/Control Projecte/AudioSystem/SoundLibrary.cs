@@ -4,6 +4,7 @@ using UnityEngine;
 public class SoundLibrary : ScriptableObject
 {
     public SoundClip[] soundClips;
+    public float fxVolume = 1f;
 
     private void OnValidate()
     {

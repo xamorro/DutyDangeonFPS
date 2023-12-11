@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class key : MonoBehaviour
 {
-
     [SerializeField] private GameObject clau;
+
     // Start is called before the first frame update
     void Start()
     {

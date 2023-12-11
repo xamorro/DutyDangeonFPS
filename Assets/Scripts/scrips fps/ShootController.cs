@@ -46,7 +46,7 @@ public class ShootController : MonoBehaviour
     private float nextShootTime = 0f;
 
     private Animator armaAnimator;
-
+    private float initialFOV;
 
     private void Start()
     {
@@ -56,6 +56,8 @@ public class ShootController : MonoBehaviour
         MunicioMaxModificada?.Invoke(Municio);
 
         armaAnimator = arma.GetComponent<Animator>();
+
+        initialFOV = fpsCamera.fieldOfView;
     }
 
 
@@ -236,14 +238,12 @@ public class ShootController : MonoBehaviour
         resetAim = false;
         interpolator += Time.deltaTime / aimTime;
         LerpAim();
-        fpsCamera.fieldOfView = 40;
     }
 
     private void AimOut()
     {
         interpolator -= Time.deltaTime / aimTime;
         LerpAim();
-        fpsCamera.fieldOfView = 60;
 
         resetAim = interpolator > 0;
     }
@@ -252,7 +252,7 @@ public class ShootController : MonoBehaviour
     {
         weapon.position = Vector3.Lerp(weaponHolder.position, aimPoint.position, interpolator);
         weapon.rotation = aimPoint.rotation;
-        fpsCamera.fieldOfView =  Mathf.Lerp(fpsCamera.fieldOfView, 40, interpolator);
+        fpsCamera.fieldOfView =  Mathf.Lerp(initialFOV, 40, interpolator);
     }
 
     public void SetAimOut()

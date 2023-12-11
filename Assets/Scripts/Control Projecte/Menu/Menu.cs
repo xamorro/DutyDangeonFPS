@@ -13,6 +13,8 @@ public class Menu : MonoBehaviour
     private float soundVolume;
     [SerializeField] TMP_Text textSoundVolume;
     [SerializeField] Slider soundSlider;
+    [SerializeField] Slider soundFX;
+    [SerializeField] SoundLibrary soundLibrary;
 
 
 
@@ -27,6 +29,7 @@ public class Menu : MonoBehaviour
     {
         //crida s'script quan es valor de slider cambia
         soundSlider.onValueChanged.AddListener(delegate { setSoundVolume(); });
+        soundFX.value = soundLibrary.fxVolume;
     }
 
     public void StartGame()
@@ -84,8 +87,10 @@ public class Menu : MonoBehaviour
         Debug.Log("Exit Game");
     }
 
-
-
+    public void ChangeSoundFX()
+    {
+        soundLibrary.fxVolume = soundFX.value;
+    }
 
     public void setSoundVolume()
     {
