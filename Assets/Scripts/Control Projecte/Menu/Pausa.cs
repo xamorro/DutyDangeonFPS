@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Pausa : MonoBehaviour
 {
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private GameObject menuPausa;
+    [SerializeField] private GameObject optMenu;
+    [SerializeField] Slider soundSlider;
+    [SerializeField] Slider soundFX;
+
     public bool isPaused;
 
     // Start is called before the first frame update
@@ -58,20 +64,20 @@ public class Pausa : MonoBehaviour
         }
     }
 
-    //public void CloseMenuOptions()
-    //{
-    //    optMenu.SetActive(false);
-    //    EventSystem.current.SetSelectedGameObject(menuFirstButton);
-    //    principalMenu.SetActive(true);
-    //}
+    public void CloseMenuOptions()
+    {
+        optMenu.SetActive(false);
+        //EventSystem.current.SetSelectedGameObject(menuFirstButton);
+        menuPausa.SetActive(true);
+    }
 
 
-    //public void OpenMenuOptions()
-    //{
-    //    optMenu.SetActive(true);
-    //    EventSystem.current.SetSelectedGameObject(optionFirstButton);
-    //    principalMenu.SetActive(false);
-    //}
+    public void OpenMenuOptions()
+    {
+        optMenu.SetActive(true);
+        //EventSystem.current.SetSelectedGameObject(optionsFirstButton);
+        menuPausa.SetActive(false);
+    }
 
 
     public void ToMainMenu()
