@@ -5,6 +5,7 @@ public class SoundLibrary : ScriptableObject
 {
     public SoundClip[] soundClips;
     public float fxVolume = 1f;
+    public float musicVolume = 1f;
 
     private void OnValidate()
     {

@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
     //Aixo auria de estar a nes sound manager.
     private float soundVolume;
     [SerializeField] TMP_Text textSoundVolume;
-    [SerializeField] Slider soundSlider;
+    [SerializeField] Slider soundMusicSlider;
     [SerializeField] Slider soundFX;
     [SerializeField] SoundLibrary soundLibrary;
 
@@ -28,8 +28,9 @@ public class Menu : MonoBehaviour
     private void Start()
     {
         //crida s'script quan es valor de slider cambia
-        soundSlider.onValueChanged.AddListener(delegate { setSoundVolume(); });
+        soundMusicSlider.onValueChanged.AddListener(delegate { setSoundVolume(); });
         soundFX.value = soundLibrary.fxVolume;
+        soundMusicSlider.value = soundLibrary.musicVolume;
     }
 
     public void StartGame()
@@ -92,10 +93,15 @@ public class Menu : MonoBehaviour
         soundLibrary.fxVolume = soundFX.value;
     }
 
+    public void ChangeMusicVolume()
+    {
+        soundLibrary.musicVolume = soundMusicSlider.value;
+    }
+
     public void setSoundVolume()
     {
         //Aqui auriem de agafar es valor des sound manager. Ara es una prova
-        soundVolume = soundSlider.value;
+        soundVolume = soundMusicSlider.value;
         textSoundVolume.text = soundVolume.ToString();
 
     }

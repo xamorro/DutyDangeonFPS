@@ -10,7 +10,7 @@ public class Pausa : MonoBehaviour
     [SerializeField] private MouseLook mouseLook;
     [SerializeField] private GameObject menuPausa;
     [SerializeField] private GameObject optMenu;
-    [SerializeField] Slider soundSlider;
+    [SerializeField] Slider soundMusicSlider;
     [SerializeField] Slider soundFX;
 
     [SerializeField] SoundLibrary soundLibrary;
@@ -23,6 +23,7 @@ public class Pausa : MonoBehaviour
         menuPausa.SetActive(false);
         isPaused = false;
         soundFX.value = soundLibrary.fxVolume;
+        soundMusicSlider.value = soundLibrary.musicVolume;
 }
 
     // Update is called once per frame
@@ -85,6 +86,12 @@ public class Pausa : MonoBehaviour
     public void ChangeSoundFX()
     {
         soundLibrary.fxVolume = soundFX.value;
+    }
+
+    public void ChangeMusicVolume()
+    {
+        soundLibrary.musicVolume = soundMusicSlider.value;
+        
     }
 
     public void ToMainMenu()

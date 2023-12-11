@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sound On
+  m_text: Music
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e5048bba91c5de41bc9c77481d69c3f, type: 2}
   m_sharedMaterial: {fileID: -6549194115830945086, guid: 5e5048bba91c5de41bc9c77481d69c3f,
@@ -2746,8 +2746,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 830915957}
         m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: setSoundVolume
-        m_Mode: 4
+        m_MethodName: ChangeMusicVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3801,7 +3801,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textSoundVolume: {fileID: 143095097}
-  soundSlider: {fileID: 573594307}
+  soundMusicSlider: {fileID: 573594307}
   soundFX: {fileID: 1995392579}
   soundLibrary: {fileID: 11400000, guid: a0883e8d10c8a9c41bc4e1d642c69979, type: 2}
   principalMenu: {fileID: 1516935418}

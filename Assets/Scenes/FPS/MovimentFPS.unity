@@ -7566,7 +7566,7 @@ GameObject:
   - component: {fileID: 330900610}
   - component: {fileID: 330900609}
   m_Layer: 5
-  m_Name: Text Sound
+  m_Name: Text Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7611,7 +7611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sound
+  m_text: Music
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5e5048bba91c5de41bc9c77481d69c3f, type: 2}
   m_sharedMaterial: {fileID: -6549194115830945086, guid: 5e5048bba91c5de41bc9c77481d69c3f,
@@ -26124,7 +26124,7 @@ MonoBehaviour:
   mouseLook: {fileID: 394590439}
   menuPausa: {fileID: 617394562}
   optMenu: {fileID: 283079032}
-  soundSlider: {fileID: 1492881671}
+  soundMusicSlider: {fileID: 1492881671}
   soundFX: {fileID: 2133066638}
   soundLibrary: {fileID: 11400000, guid: a0883e8d10c8a9c41bc4e1d642c69979, type: 2}
   isPaused: 0
@@ -37655,7 +37655,7 @@ GameObject:
   - component: {fileID: 1492881672}
   - component: {fileID: 1492881671}
   m_Layer: 5
-  m_Name: Slider Sound
+  m_Name: Slider Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37712,10 +37712,10 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: setSoundVolume
-        m_Mode: 4
+      - m_Target: {fileID: 968284106}
+        m_TargetAssemblyTypeName: Pausa, Assembly-CSharp
+        m_MethodName: ChangeMusicVolume
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
