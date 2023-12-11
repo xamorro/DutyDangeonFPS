@@ -17,8 +17,7 @@ public class ValuesController : MonoBehaviour
     [SerializeField] private Slider sliderVida;
     [SerializeField] private Image colorVida;
     private float percentatgeVida;
-    //private float vidaLerp;
-    //private float timeScale = 0;
+    private float sliderDuration = 0.5f;
     
 
     private void OnEnable()
@@ -72,9 +71,10 @@ public class ValuesController : MonoBehaviour
     private void UpdateVida(float vida)
     {
         vidaJugador.text = vida.ToString();
+        StartCoroutine(MoveHealthBar(vida));
 
         percentatgeVida = vida / 100;
-        sliderVida.value = percentatgeVida;
+
         if (percentatgeVida < 0.5f)
         {
             colorVida.color = Color.yellow;
@@ -83,10 +83,18 @@ public class ValuesController : MonoBehaviour
                 colorVida.color = Color.red;
             }
         }
-        
-        //timeScale += Time.deltaTime * 2;
-        //sliderVida.value = Mathf.Lerp(1, 0, timeScale);
+    }
 
-        //vidaLerp = percentatgeVida;
+    private IEnumerator MoveHealthBar(float vida)
+    {
+        float elapsedTime = 0;
+        float healthStart = sliderVida.value;
+        while (elapsedTime <= sliderDuration)
+        {
+
+            sliderVida.value = Mathf.Lerp(healthStart, vida / 100, elapsedTime / sliderDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 }

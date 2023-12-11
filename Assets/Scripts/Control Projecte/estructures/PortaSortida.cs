@@ -9,7 +9,8 @@ public class PortaSortida : MonoBehaviour
     [SerializeField] private GameObject clauCanvas;
     [SerializeField] private GameObject infoCanvas;
     [SerializeField] private TextMeshProUGUI InfoZona;
-    
+
+    private float contadorenemics;
     private Image panelInfo;
     public Animator animator;
     private bool obert = false;
@@ -22,19 +23,27 @@ public class PortaSortida : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        //Si tenc sa clau aixó
-        if (clauCanvas.activeInHierarchy)
+        contadorEnemigoZ3();
+        if (contadorenemics == 0 && clauCanvas.activeInHierarchy)
         {
             obert = true;
             animator.SetTrigger("Obert");
             clauCanvas.SetActive(false);
-
-
         }
         else if (obert == false)
         {
-            StartCoroutine(Texte("You need a Key"));
+            if (contadorenemics > 0 && !clauCanvas.activeInHierarchy)
+            {
+                StartCoroutine(Texte("Enemies and Key Remaining"));
+            }
+            else if (!clauCanvas.activeInHierarchy)
+            {
+                StartCoroutine(Texte("You need a Key"));
+            }
+            else if (contadorenemics > 0)
+            {
+                StartCoroutine(Texte("Enemies Remaining"));
+            }
         }
 
     }
@@ -59,5 +68,12 @@ public class PortaSortida : MonoBehaviour
 
         InfoZona.enabled = false;
         panelInfo.enabled = false;
+    }
+
+    private void contadorEnemigoZ3()
+    {
+        EnemigoZ3[] enemics = FindObjectsByType<EnemigoZ3>(FindObjectsSortMode.None);
+        //Debug.Log(enemics.Length);
+        contadorenemics = enemics.Length;
     }
 }

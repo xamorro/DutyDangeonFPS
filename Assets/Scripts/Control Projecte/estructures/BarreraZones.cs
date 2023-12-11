@@ -6,6 +6,7 @@ public class BarreraZones : MonoBehaviour
 {
     private float contadorenemics;
     [SerializeField] private Animator animator;
+    [SerializeField] private GameObject clauCanvas;
 
     private enum Zona
     {
@@ -59,4 +60,6 @@ public class BarreraZones : MonoBehaviour
         //Debug.Log(enemics.Length);
         contadorenemics = enemics.Length;
     }
+
+
 }
