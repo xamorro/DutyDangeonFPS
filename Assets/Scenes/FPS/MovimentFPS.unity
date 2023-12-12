@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 2.79
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubtractiveShadowColor: {r: 0, g: 0, b: 0, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2039a0ad0a9d05549928b70362f54902, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.029087335, g: 0.0298977, b: 0.029896773, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -39965,7 +39965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1591898747
 Transform:
   m_ObjectHideFlags: 0
@@ -45702,7 +45702,7 @@ PrefabInstance:
     - target: {fileID: 348899068369048964, guid: 34dda3edacd2d6f4b807b1e29210367c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.17
       objectReference: {fileID: 0}
     - target: {fileID: 348899068369048964, guid: 34dda3edacd2d6f4b807b1e29210367c,
         type: 3}
@@ -45842,13 +45842,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8843203440318490920, guid: 34dda3edacd2d6f4b807b1e29210367c,
         type: 3}
+      propertyPath: atackRange
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843203440318490920, guid: 34dda3edacd2d6f4b807b1e29210367c,
+        type: 3}
       propertyPath: IniciDispar
       value: 
       objectReference: {fileID: 381670508}
     - target: {fileID: 8843203440318490920, guid: 34dda3edacd2d6f4b807b1e29210367c,
         type: 3}
       propertyPath: FollowingRange
-      value: 20.1
+      value: 22.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

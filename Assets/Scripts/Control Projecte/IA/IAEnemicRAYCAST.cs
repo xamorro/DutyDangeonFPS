@@ -297,6 +297,7 @@ public class IAEnemicRaycast : MonoBehaviour
 
     private void PerformShoot()
     {
+        AudioManager.I.PlaySound(SoundName.AkShot, transform.position);
         float randomnumber = Random.Range(2.2f, -2.2f);
         if (Physics.Raycast(IniciDispar.transform.position + new Vector3(0f, randomnumber, 0f), IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
         {
