@@ -138,9 +138,10 @@ public class ShootController : MonoBehaviour
             if (hit.transform.root.gameObject.CompareTag("Diana"))
             {
                 Destroy(hit.transform.gameObject);
-                //StatsSoldat vidadiana = hit.transform.gameObject.GetComponent<StatsSoldat>();
-                //vidadiana.DañoRecibido(dañoarma);
+                Municio++;
+                MunicioMaxModificada?.Invoke(Municio);
 
+                //value zona entrenamiento fe un if hit diana??
             }
 
 
