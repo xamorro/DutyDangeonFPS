@@ -3,11 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StatsPlayer : MonoBehaviour
 {
     //TEXTE PER PANTALLA
     [SerializeField] private TextMeshProUGUI InfoVida;
+    [SerializeField] private Image canvasDaño;
+
+    private float alphaValue = 0.0f;
 
     
     private Mort mort;
@@ -27,6 +31,8 @@ public class StatsPlayer : MonoBehaviour
         isDeath = false;
         mort = GameObject.Find("CanvasJOC").GetComponent<Mort>();
         ferit = GameObject.Find("CanvasJOC").GetComponent<Ferit>();
+        
+
     }
 
     // Update is called once per frame
@@ -44,6 +50,8 @@ public class StatsPlayer : MonoBehaviour
         VidaModificada?.Invoke(VidaPlayer);
         ferit.CanvasFerit();
 
+        ChangeAlpha();
+
         if (VidaPlayer <= 0f)
         {
             DeathMenu();
@@ -56,5 +64,12 @@ public class StatsPlayer : MonoBehaviour
         VidaModificada?.Invoke(0);
         mort?.MenuDeath();
         Debug.Log("Has mort");
+    }
+
+    private void ChangeAlpha()
+    {
+        alphaValue = alphaValue + 0.08f;
+        //canvasDaño.color = new Color(canvasDaño.color.r, canvasDaño.color.r, canvasDaño.color.r, alphaValue);
+        canvasDaño.color = new Color(255, 0, 0, alphaValue);
     }
 }
