@@ -50,6 +50,7 @@ public class Pausa : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
         menuPausa.SetActive(false);
+        optMenu.SetActive(false);
         mouseLook.enabled = true;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
