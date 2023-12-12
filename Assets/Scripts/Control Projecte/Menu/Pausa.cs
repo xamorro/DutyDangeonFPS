@@ -94,6 +94,7 @@ public class Pausa : MonoBehaviour
         soundLibrary.musicVolume = soundMusicSlider.value;
         AudioSource asa = GameObject.FindGameObjectWithTag("Musica").GetComponent<AudioSource>();
         asa.volume = soundMusicSlider.value / 100;
+        //AudioManager.I.GetComponents<AudioSource>.vol...
 
     }
 

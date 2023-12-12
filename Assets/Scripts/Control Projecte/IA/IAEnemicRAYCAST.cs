@@ -101,7 +101,7 @@ public class IAEnemicRaycast : MonoBehaviour
                 if (vision.canSeePlayer)
                 {
                     waitTimer += Time.deltaTime;
-                    if (waitTimer >= 2)
+                    if (waitTimer >= 1)
                     {
                         ShootTimer();
                     }
@@ -186,7 +186,7 @@ public class IAEnemicRaycast : MonoBehaviour
                         if (vision.canSeePlayer)
                         {
                             waitTimer += Time.deltaTime;
-                            if (waitTimer >= 2)
+                            if (waitTimer >= 1)
                             {
                                 ShootTimer();
                             }
@@ -298,8 +298,8 @@ public class IAEnemicRaycast : MonoBehaviour
     private void PerformShoot()
     {
         AudioManager.I.PlaySound(SoundName.AkShot, transform.position);
-        float randomnumber = Random.Range(2.2f, -2.2f);
-        if (Physics.Raycast(IniciDispar.transform.position + new Vector3(0f, randomnumber, 0f), IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
+        float randomnumber = Random.Range(0.5f, - 0.5f);
+        if (Physics.Raycast(IniciDispar.transform.position + new Vector3(randomnumber, randomnumber, 0f), IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
         {
             //SENSE AQUESTES 2 LINEES ME DISPARA INCLUS ESTANT MORT. 
             StatsSoldat statssoldat = GetComponent<StatsSoldat>();

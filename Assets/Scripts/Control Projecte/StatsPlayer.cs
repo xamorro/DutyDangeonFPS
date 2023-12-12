@@ -8,8 +8,10 @@ public class StatsPlayer : MonoBehaviour
 {
     //TEXTE PER PANTALLA
     [SerializeField] private TextMeshProUGUI InfoVida;
+
     
     private Mort mort;
+    private Ferit ferit;
 
     public static event Action<float> VidaModificada;
 
@@ -24,6 +26,7 @@ public class StatsPlayer : MonoBehaviour
         VidaModificada?.Invoke(VidaPlayer);
         isDeath = false;
         mort = GameObject.Find("CanvasJOC").GetComponent<Mort>();
+        ferit = GameObject.Find("CanvasJOC").GetComponent<Ferit>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,7 @@ public class StatsPlayer : MonoBehaviour
     {
         VidaPlayer -= cantidad;
         VidaModificada?.Invoke(VidaPlayer);
+        ferit.CanvasFerit();
 
         if (VidaPlayer <= 0f)
         {
