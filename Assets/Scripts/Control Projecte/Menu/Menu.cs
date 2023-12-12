@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting;
 
 public class Menu : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Menu : MonoBehaviour
     [SerializeField] Slider soundFX;
     [SerializeField] SoundLibrary soundLibrary;
 
+    //private AudioSource musicasound;
 
 
     [SerializeField] private GameObject principalMenu;
@@ -31,6 +33,7 @@ public class Menu : MonoBehaviour
         soundMusicSlider.onValueChanged.AddListener(delegate { setSoundVolume(); });
         soundFX.value = soundLibrary.fxVolume;
         soundMusicSlider.value = soundLibrary.musicVolume;
+        //musicasound = GameObject.FindGameObjectWithTag("Musica").GetComponent<AudioSource>();
     }
 
     public void StartGame()
@@ -96,6 +99,9 @@ public class Menu : MonoBehaviour
     public void ChangeMusicVolume()
     {
         soundLibrary.musicVolume = soundMusicSlider.value;
+        //musicasound.volume = soundMusicSlider.value;
+        AudioSource asa = GameObject.FindGameObjectWithTag("Musica").GetComponent<AudioSource>();
+        asa.volume = soundMusicSlider.value / 100;
     }
 
     public void setSoundVolume()
@@ -103,7 +109,6 @@ public class Menu : MonoBehaviour
         //Aqui auriem de agafar es valor des sound manager. Ara es una prova
         soundVolume = soundMusicSlider.value;
         textSoundVolume.text = soundVolume.ToString();
-
     }
 
 

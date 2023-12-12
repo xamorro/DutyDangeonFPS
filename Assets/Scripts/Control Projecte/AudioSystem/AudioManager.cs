@@ -33,14 +33,16 @@ public class AudioManager : MonoBehaviour
         }
 
         InitializeSoundTimers();
-    }
-
-    private void Start()
-    {
         if (playSceneMusic)
             PlayBackgroundSounds(sceneMusicClip, sceneMusicAudioSource);
         if (playAmbianceSound)
             PlayBackgroundSounds(ambianceClip, ambianceAudioSource);
+    }
+
+
+    private void Start()
+    {
+
     }
 
     public void PlaySound(SoundName soundName)
@@ -133,6 +135,7 @@ public class AudioManager : MonoBehaviour
         if (audiosource == null)
         {
             audiosource = gameObject.AddComponent<AudioSource>();
+
         }
 
         audiosource.loop = true;
