@@ -16,6 +16,7 @@ public class StatsPlayer : MonoBehaviour
     
     private Mort mort;
     private Ferit ferit;
+    private CameraShake cam;
 
     public static event Action<float> VidaModificada;
 
@@ -31,6 +32,7 @@ public class StatsPlayer : MonoBehaviour
         isDeath = false;
         mort = GameObject.Find("CanvasJOC").GetComponent<Mort>();
         ferit = GameObject.Find("CanvasJOC").GetComponent<Ferit>();
+        cam = GameObject.Find("Camera").GetComponent<CameraShake>();
         
 
     }
@@ -48,7 +50,9 @@ public class StatsPlayer : MonoBehaviour
     {
         VidaPlayer -= cantidad;
         VidaModificada?.Invoke(VidaPlayer);
+        
         ferit.CanvasFerit();
+        cam.ShakeCamera();
 
         ChangeAlpha();
 
