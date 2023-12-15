@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,12 +9,15 @@ public class PortaSortida : MonoBehaviour
 {
     [SerializeField] private GameObject clauCanvas;
     [SerializeField] private GameObject infoCanvas;
+    [SerializeField] private MouseLook mouseLook;
+    [SerializeField] private GameObject finaljoc;
     [SerializeField] private TextMeshProUGUI InfoZona;
 
     private float contadorenemics;
     private Image panelInfo;
     public Animator animator;
     private bool obert = false;
+
 
     private void Start()
     {
@@ -52,7 +56,14 @@ public class PortaSortida : MonoBehaviour
     {
         if (obert == true)
         {
-            StartCoroutine(Texte("Thanks for playing!"));
+            //StartCoroutine(Texte("Thanks for playing!"));
+            finaljoc.SetActive(true);
+            Time.timeScale = 0f;
+            //isDeath = false;
+            //mouseLook.enabled = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Debug.Log("Menu Final");
         }
         
     }

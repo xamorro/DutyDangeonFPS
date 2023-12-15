@@ -102,7 +102,7 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 0.3490566, g: 0, b: 0.008161707, a: 0.5}
+    - _GlowColor: {r: 0.122641504, g: 0.113012694, b: 0.021404414, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
@@ -120,11 +120,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Chocolate Donuts SDF
+  m_Name: Congratulations
   m_EditorClassIdentifier: 
-  hashCode: -1897292334
+  hashCode: -1804677227
   material: {fileID: -6549194115830945086}
-  materialHashCode: 1182040498
+  materialHashCode: -1314314219
   m_Version: 1.1.0
   m_SourceFontFileGUID: 2ceafbeb970ca2f4092dba1be688a8af
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 2ceafbeb970ca2f4092dba1be688a8af,

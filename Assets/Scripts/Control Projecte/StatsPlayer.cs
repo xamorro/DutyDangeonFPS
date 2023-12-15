@@ -72,7 +72,8 @@ public class StatsPlayer : MonoBehaviour
 
     private void ChangeAlpha()
     {
-        alphaValue = alphaValue + 0.08f;
+        //alphaValue = alphaValue + 0.08f;
+        alphaValue = alphaValue + 0.01f;
         //canvasDaño.color = new Color(canvasDaño.color.r, canvasDaño.color.r, canvasDaño.color.r, alphaValue);
         canvasDaño.color = new Color(255, 0, 0, alphaValue);
     }
