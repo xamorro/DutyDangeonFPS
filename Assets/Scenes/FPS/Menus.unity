@@ -591,7 +591,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1024709971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.661615}
+  m_AnchorMin: {x: 0, y: 0.66825426}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -1971,6 +1971,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1516935419}
     m_Modifications:
+    - target: {fileID: 829394474184966271, guid: 45a70964829619f479f5a12d9b1221e8,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1043324710941783063, guid: 45a70964829619f479f5a12d9b1221e8,
         type: 3}
       propertyPath: m_Color.a
@@ -2181,6 +2186,11 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 8604756934363934967, guid: 45a70964829619f479f5a12d9b1221e8,
         type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604756934363934967, guid: 45a70964829619f479f5a12d9b1221e8,
+        type: 3}
       propertyPath: m_fontSizeBase
       value: 16
       objectReference: {fileID: 0}
@@ -2190,6 +2200,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 451092852096856100, guid: 9cd15cbb43866774e81687a3a6585798,
         type: 2}
+    - target: {fileID: 8604756934363934967, guid: 45a70964829619f479f5a12d9b1221e8,
+        type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8604756934363934967, guid: 45a70964829619f479f5a12d9b1221e8,
         type: 3}
       propertyPath: m_hasFontAssetChanged
@@ -4816,8 +4831,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 80477538}
   m_HandleRect: {fileID: 80477537}
   m_Direction: 2
-  m_Value: 1.0000004
-  m_Size: 0.338385
+  m_Value: 1.0000005
+  m_Size: 0.3317457
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5828,7 +5843,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 199.99866}
-  m_SizeDelta: {x: 0, y: 1768.6499}
+  m_SizeDelta: {x: 0, y: 1810.05}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1455252737
 MonoBehaviour:
@@ -5869,8 +5884,8 @@ MonoBehaviour:
     Enemic i animacions\r\nhttps://www.mixamo.com/#/\r\n\r\nTextures:\r\nTextura
     muros\r\nhttps://polyhaven.com/a/concrete_brick_wall_001\r\n\r\nTextura pared\r\nhttps://polyhaven.com/a/castle_brick_07\r\n\r\nTextura
     enterra\r\nhttps://polyhaven.com/a/pavement_04\r\n\r\nTextura Porta Muro\r\nhttps://polyhaven.com/a/rusty_metal_sheet\r\n\r\nFonts:\r\nFont
-    Text\r\nhttps://www.dafont.com/es/chocolate-donuts.font\r\n\r\nImatges Canvas
-    i Scene:\r\nSKYBOX\r\nhttps://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633\r\n\r\nCrosshairs\r\nhttps://assetstore.unity.com/packages/2d/gui/icons/crosshairs-25-free-crosshairs-pack-216732\r\n\r\nSonidos:\r\nAK47
+    Text\r\nhttps://www.dafont.com/es/chocolate-donuts.font\r\n\rhttps://www.dafont.com/es/wartorn.font\n\nImatges
+    Canvas i Scene:\r\nSKYBOX\r\nhttps://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-series-free-103633\r\n\r\nCrosshairs\r\nhttps://assetstore.unity.com/packages/2d/gui/icons/crosshairs-25-free-crosshairs-pack-216732\r\n\r\nSonidos:\r\nAK47
     Sound\r\nhttps://freesound.org/people/LeMudCrab/sounds/163457/\r\nhttps://freesound.org/people/ser%C3%B8t%C5%8Dnin/sounds/674742/\r\n\r\nTota
     la resta d\u2019objectes no mencionat mitjan\xE7ant links s\xF3n propis fets
     amb blender.\r\nCom per exemple les barreres, els murs, les pareds,les dianes,

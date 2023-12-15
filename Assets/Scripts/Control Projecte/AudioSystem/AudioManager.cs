@@ -140,7 +140,7 @@ public class AudioManager : MonoBehaviour
 
         audiosource.loop = true;
         audiosource.volume = soundClip.volume * soundLibrary.musicVolume / 100; //AMBIENT MUSIC???????????? NO VA
-        Debug.Log(audiosource.volume);
+        //Debug.Log(audiosource.volume);
         audiosource.clip = soundClip.audioClip;
 
         audiosource.Play();
