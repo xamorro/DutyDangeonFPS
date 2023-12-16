@@ -186,7 +186,7 @@ public class IAEnemicRaycast : MonoBehaviour
                         if (vision.canSeePlayer)
                         {
                             waitTimer += Time.deltaTime;
-                            if (waitTimer >= 1)
+                            if (waitTimer >= 0.5f)
                             {
                                 ShootTimer();
                             }

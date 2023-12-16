@@ -30,7 +30,7 @@ public class Menu : MonoBehaviour
     private void Start()
     {
         //crida s'script quan es valor de slider cambia
-        soundMusicSlider.onValueChanged.AddListener(delegate { setSoundVolume(); });
+        //soundMusicSlider.onValueChanged.AddListener(delegate { setSoundVolume(); });
         soundFX.value = soundLibrary.fxVolume;
         soundMusicSlider.value = soundLibrary.musicVolume;
         //musicasound = GameObject.FindGameObjectWithTag("Musica").GetComponent<AudioSource>();
@@ -104,12 +104,12 @@ public class Menu : MonoBehaviour
         asa.volume = soundMusicSlider.value / 100;
     }
 
-    public void setSoundVolume()
-    {
-        //Aqui auriem de agafar es valor des sound manager. Ara es una prova
-        soundVolume = soundMusicSlider.value;
-        textSoundVolume.text = soundVolume.ToString();
-    }
+    //public void setSoundVolume()
+    //{
+    //    //Aqui auriem de agafar es valor des sound manager. Ara es una prova
+    //    soundVolume = soundMusicSlider.value;
+    //    textSoundVolume.text = soundVolume.ToString();
+    //}
 
 
 }

@@ -35,6 +35,7 @@ public class Mort : MonoBehaviour
     public void ToMainMenu()
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
     }
 
     public void ExitGame()
