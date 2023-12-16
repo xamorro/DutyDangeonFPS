@@ -28,6 +28,7 @@ public class BarreraZones : MonoBehaviour
                 if (contadorenemics == 0)
                 {
                     animator.SetBool("Obrir", true);
+                    AudioManager.I.PlaySound(SoundName.PortaReja, transform.position);
                     GetComponent<BarreraZones>().enabled = false;
                 }
                 break;
@@ -37,6 +38,7 @@ public class BarreraZones : MonoBehaviour
                 if (contadorenemics == 0)
                 {
                     animator.SetBool("Obrir", true);
+                    AudioManager.I.PlaySound(SoundName.PortaReja, transform.position);
                     GetComponent<BarreraZones>().enabled = false;
                 }
                 break;

@@ -17,7 +17,8 @@ public class IAEnemicRaycast : MonoBehaviour
     //[SerializeField] private GameObject bulletPrefab;
 
     [SerializeField] private LayerMask LayerPersonatge;
-    [SerializeField] private bool sniper;
+    [SerializeField] private bool sniper, sniperMuro;
+    [SerializeField] private GameObject player;
 
     private float vidaSoldat;
 
@@ -90,10 +91,13 @@ public class IAEnemicRaycast : MonoBehaviour
 
         if (hpsoldat > 0)
         {
-            if (sniper)
+            if (sniper || sniperMuro)
             {
-
-                GetComponent<FieldOfView>().detectionRange = 60;
+                if (sniperMuro)
+                {
+                    visorPoint.LookAt(player.transform);
+                } 
+                    GetComponent<FieldOfView>().detectionRange = 60;
                 agent.isStopped = true;
                 //Debug.Log(vision.canSeePlayer);
                 //Debug.Log(vistPrimerPic);
@@ -101,8 +105,13 @@ public class IAEnemicRaycast : MonoBehaviour
                 if (vision.canSeePlayer)
                 {
                     waitTimer += Time.deltaTime;
-                    if (waitTimer >= 1)
+                    if (waitTimer >= 0.5f && sniper)
                     {
+                        ShootTimer();
+                    }else if (waitTimer >= 0.5f && sniperMuro)
+                    {
+                        arma.LookAt(player.transform);
+                        IniciDispar.LookAt(player.transform);
                         ShootTimer();
                     }
                 }
@@ -298,25 +307,51 @@ public class IAEnemicRaycast : MonoBehaviour
     private void PerformShoot()
     {
         AudioManager.I.PlaySound(SoundName.AkShot, transform.position);
-        float randomnumber = Random.Range(0.5f, - 0.5f);
-        if (Physics.Raycast(IniciDispar.transform.position + new Vector3(randomnumber, randomnumber, 0f), IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
+        float randomnumber = Random.Range(0.5f, -0.5f);
+        float randomnumberMuro = Random.Range(2.8f, -2.8f);
+        if (sniperMuro && !sniper)
         {
-            //SENSE AQUESTES 2 LINEES ME DISPARA INCLUS ESTANT MORT. 
-            StatsSoldat statssoldat = GetComponent<StatsSoldat>();
-            float hpsoldat = statssoldat.VidaSoldat;
-            //--------------------------------------
-
-            if (hit.transform.gameObject.CompareTag("Player") && hpsoldat > 0)
+            // POS AQUEST IF JA QUE PER FER ENEMIC MURO, HE EMPLEAT UN ALTRE TARGET EL CUAL AMB EL RANDOM NORMAL ME FER TOT ESTENS. Amb aquest random ja no pasa constant
+            if (Physics.Raycast(IniciDispar.transform.position + new Vector3(randomnumberMuro, randomnumberMuro, 0f), IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
             {
+                //SENSE AQUESTES 2 LINEES ME DISPARA INCLUS ESTANT MORT. 
+                StatsSoldat statssoldat = GetComponent<StatsSoldat>();
+                float hpsoldat = statssoldat.VidaSoldat;
+                //--------------------------------------
 
-                
-                //Debug.Log("jugador ferit");
-                //Agafam es component des pare de s'objecte impactat
-                StatsPlayer vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsPlayer>();
-                vidasoldat.DañoRecibido(armaDaño);
+                if (hit.transform.gameObject.CompareTag("Player") && hpsoldat > 0)
+                {
+
+
+                    //Debug.Log("jugador ferit");
+                    //Agafam es component des pare de s'objecte impactat
+                    StatsPlayer vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsPlayer>();
+                    vidasoldat.DañoRecibido(armaDaño);
+                }
+
             }
+        }else if (!sniperMuro && sniper)
+        {
+            if (Physics.Raycast(IniciDispar.transform.position + new Vector3(randomnumber, randomnumber, 0f), IniciDispar.transform.forward, out RaycastHit hit, Mathf.Infinity, LayerPersonatge))
+            {
+                //SENSE AQUESTES 2 LINEES ME DISPARA INCLUS ESTANT MORT. 
+                StatsSoldat statssoldat = GetComponent<StatsSoldat>();
+                float hpsoldat = statssoldat.VidaSoldat;
+                //--------------------------------------
 
+                if (hit.transform.gameObject.CompareTag("Player") && hpsoldat > 0)
+                {
+
+
+                    //Debug.Log("jugador ferit");
+                    //Agafam es component des pare de s'objecte impactat
+                    StatsPlayer vidasoldat = hit.transform.gameObject.GetComponentInParent<StatsPlayer>();
+                    vidasoldat.DañoRecibido(armaDaño);
+                }
+
+            }
         }
+        
     }
 
     private void OnDrawGizmos()

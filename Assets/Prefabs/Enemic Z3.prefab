@@ -2605,15 +2605,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5532425661950192951}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.6172413, z: -0, w: 0.7867739}
-  m_LocalPosition: {x: 26.13, y: 0.17, z: 26.53}
+  m_LocalRotation: {x: -0, y: 0.9936727, z: -0, w: 0.11231464}
+  m_LocalPosition: {x: 39.61, y: 0.17, z: 16.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8924402735318479544}
   - {fileID: 5037346559058088310}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 76.23, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 167.102, z: 0}
 --- !u!114 &141016517496998554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2642,8 +2642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f8bb358f42e4f4a859c9538e2eed47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 25.88
-  coneAngle: 81
+  detectionRange: 31.98
+  coneAngle: 126
   canSeePlayer: 0
   target: {fileID: 0}
   targetMask:
@@ -2709,9 +2709,9 @@ MonoBehaviour:
   enemicgo: {fileID: 1055646686284386008}
   patrolMaxRange: 15
   patrolMinRange: 5
-  atackRange: 19
+  atackRange: 27.2
   "armaDa\xF1o": 8
-  FollowingRange: 22.4
+  FollowingRange: 29.7
   LayerPersonatge:
     serializedVersion: 2
     m_Bits: 8

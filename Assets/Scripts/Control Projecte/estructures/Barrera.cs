@@ -32,6 +32,7 @@ public class Barrera: MonoBehaviour
         {
             obert = true;
             animator.SetBool("Obrir", true);
+            AudioManager.I.PlaySound(SoundName.PortaReja, transform.position);
             StartCoroutine(Texte("Kills all enemies"));
             clauCanvas.SetActive(false);
 
