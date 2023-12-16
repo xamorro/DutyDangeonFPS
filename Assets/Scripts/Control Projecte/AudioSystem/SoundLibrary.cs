@@ -30,7 +30,7 @@ public enum SoundName
     ReloadAK,
     Pasos,
     PortaReja,
-    UltimateCharged,
+    PortaMuro,
     UltimateRelease,
     MothershipExplosion,
     MothershipCollapsing,

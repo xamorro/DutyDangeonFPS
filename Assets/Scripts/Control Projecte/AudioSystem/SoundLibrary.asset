@@ -55,5 +55,12 @@ MonoBehaviour:
     hasPlayTimer: 0
     playTimer: 0
     spacialBlend: 1
-  fxVolume: 100
-  musicVolume: 52
+  - soundName: 6
+    audioClip: {fileID: 8300000, guid: b16950244c1dafd43b7858b6391444d5, type: 3}
+    loop: 0
+    volume: 1
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 1
+  fxVolume: 55
+  musicVolume: 58

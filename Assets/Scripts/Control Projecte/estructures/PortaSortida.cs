@@ -32,6 +32,7 @@ public class PortaSortida : MonoBehaviour
         {
             obert = true;
             animator.SetTrigger("Obert");
+            AudioManager.I.PlaySound(SoundName.PortaMuro, transform.position);
             clauCanvas.SetActive(false);
         }
         else if (obert == false)
