@@ -25,6 +25,7 @@ public class AddMunicio : MonoBehaviour
         {
             ShootController municio = Player.gameObject.GetComponentInChildren<ShootController>();
             municio.AddMunicioEnemic(addAmmo);
+            AudioManager.I.PlaySound(SoundName.CollectingAmmo, transform.position);
         }
         Destroy(gameObject);
     }

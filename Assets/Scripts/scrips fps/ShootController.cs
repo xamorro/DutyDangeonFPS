@@ -138,6 +138,7 @@ public class ShootController : MonoBehaviour
             if (hit.transform.root.gameObject.CompareTag("Diana"))
             {
                 Destroy(hit.transform.gameObject);
+                AudioManager.I.PlaySound(SoundName.SoundWood, transform.position);
                 Municio++;
                 MunicioMaxModificada?.Invoke(Municio);
 

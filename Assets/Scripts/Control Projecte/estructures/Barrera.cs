@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.UI;
 
 public class Barrera: MonoBehaviour
@@ -10,6 +8,7 @@ public class Barrera: MonoBehaviour
     [SerializeField] private GameObject clauCanvas;
     [SerializeField] private TextMeshProUGUI InfoZona;
     [SerializeField] private GameObject infoCanvas;
+    [SerializeField] private GameObject llumsZ2;
 
     private Image panelInfo;
     public Animator animator;
@@ -34,6 +33,7 @@ public class Barrera: MonoBehaviour
             animator.SetBool("Obrir", true);
             AudioManager.I.PlaySound(SoundName.PortaReja, transform.position);
             StartCoroutine(Texte("Kills all enemies"));
+            llumsZ2.SetActive(true);
             clauCanvas.SetActive(false);
 
 

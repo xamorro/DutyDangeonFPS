@@ -31,9 +31,9 @@ public enum SoundName
     Pasos,
     PortaReja,
     PortaMuro,
-    UltimateRelease,
-    MothershipExplosion,
-    MothershipCollapsing,
+    CollectingAmmo,
+    SoundWood,
+    Radio,
     PlayerDamaged,
     MainMenuMusic
 }

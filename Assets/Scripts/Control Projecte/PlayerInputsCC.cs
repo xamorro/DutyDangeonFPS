@@ -45,7 +45,7 @@ public class PlayerInputHandlerCC : MonoBehaviour
             shootController?.HandleReload();    
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             pause?.MenuPausa();
         }

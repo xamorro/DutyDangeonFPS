@@ -62,5 +62,26 @@ MonoBehaviour:
     hasPlayTimer: 0
     playTimer: 0
     spacialBlend: 1
-  fxVolume: 55
-  musicVolume: 58
+  - soundName: 7
+    audioClip: {fileID: 8300000, guid: 7d05b2bf760e74f4db8c21e8a94de562, type: 3}
+    loop: 0
+    volume: 0.66
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 1
+  - soundName: 8
+    audioClip: {fileID: 8300000, guid: c719a40ee3e74a1468729e33c5813dcc, type: 3}
+    loop: 0
+    volume: 0.77
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 0.68
+  - soundName: 9
+    audioClip: {fileID: 8300000, guid: b7ed7cdebcfb47946bdb342dfcfe8527, type: 3}
+    loop: 0
+    volume: 0.89
+    hasPlayTimer: 0
+    playTimer: 0
+    spacialBlend: 1
+  fxVolume: 48
+  musicVolume: 12
