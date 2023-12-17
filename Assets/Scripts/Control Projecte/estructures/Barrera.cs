@@ -21,6 +21,7 @@ public class Barrera: MonoBehaviour
         panelInfo = infoCanvas.GetComponentInChildren<Image>();
     }
 
+    //Comprova si hi ha les claus actives a nes canvas. Aixó vol dir q el jugador te les claus. Si els té obri la porta y activa els llums de la z2 i un canvas de matar enemics.
     private void OnTriggerEnter(Collider other)
     {
 
@@ -37,13 +38,15 @@ public class Barrera: MonoBehaviour
             clauCanvas.SetActive(false);
 
 
-        }
+        }//Si no tens clau et dona un missatge
         else if (distance <= 3 && obert == false)
         {
             StartCoroutine(Texte("You need a Key"));
         }
         
     }
+
+    //Corrutine de texte per pantalla.
     public IEnumerator Texte(string texte)
     {
         InfoZona.enabled = true;

@@ -16,6 +16,8 @@ public class BarreraZones : MonoBehaviour
     [SerializeField] private Zona zonaEnemics;
 
 
+    //Depenent de la zona que has seleccionat dins l'script de la porta entrará a un contador o una altre. Si per exemple has triat Z2, obrirá la porta un cop hagi vist que hi hagi 0 enemics de Z2.
+    //Conta els enemics mitjançant un script que tenen buit cada enemic.
     private void Update()
     {
         switch (zonaEnemics)

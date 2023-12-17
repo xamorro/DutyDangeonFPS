@@ -33,13 +33,14 @@ public class Menu : MonoBehaviour
         //musicasound = GameObject.FindGameObjectWithTag("Musica").GetComponent<AudioSource>();
     }
 
+    //Obrir Scene Joc
     public void StartGame()
     {
         SceneManager.LoadScene(1);
         Time.timeScale = 1f;
     }
 
-
+    //Tancar Menu Options
     public void CloseMenuOptions()
     {
         optMenu.SetActive(false);
@@ -47,6 +48,7 @@ public class Menu : MonoBehaviour
         principalMenu.SetActive(true);
     }
 
+    //Tancar Menu About
     public void CloseMenuAbout()
     {
         aboutMenu.SetActive(false);
@@ -54,6 +56,7 @@ public class Menu : MonoBehaviour
         principalMenu.SetActive(true);
     }
 
+    //Tancar Menu Control
     public void CloseMenuControl()
     {
         controlMenu.SetActive(false);
@@ -61,6 +64,7 @@ public class Menu : MonoBehaviour
         principalMenu.SetActive(true);
     }
 
+    //Obrir Menu Options
     public void OpenMenuOptions()
     {
         optMenu.SetActive(true);
@@ -69,12 +73,15 @@ public class Menu : MonoBehaviour
         principalMenu.SetActive(false);
     }
 
+    //Obrir Menu About
     public void OpenMenuAbout()
     {
         aboutMenu.SetActive(true);
         EventSystem.current.SetSelectedGameObject(aboutFirstButton);
         principalMenu.SetActive(false);
     }
+
+    //Obrir Menu Control
     public void OpenMenuControl()
     {
         controlMenu.SetActive(true);
@@ -82,17 +89,20 @@ public class Menu : MonoBehaviour
         principalMenu.SetActive(false);
     }
 
+    //Sortir Joc
     public void ExitGame()
     {
         Application.Quit();
         Debug.Log("Exit Game");
     }
 
+    //Canvia Sonido FX
     public void ChangeSoundFX()
     {
         soundLibrary.fxVolume = soundFX.value;
     }
 
+    //Canvia Musica sonido en temps real
     public void ChangeMusicVolume()
     {
         soundLibrary.musicVolume = soundMusicSlider.value;
@@ -100,13 +110,5 @@ public class Menu : MonoBehaviour
         AudioSource asa = GameObject.FindGameObjectWithTag("Musica").GetComponent<AudioSource>();
         asa.volume = soundMusicSlider.value / 100;
     }
-
-    //public void setSoundVolume()
-    //{
-    //    //Aqui auriem de agafar es valor des sound manager. Ara es una prova
-    //    soundVolume = soundMusicSlider.value;
-    //    textSoundVolume.text = soundVolume.ToString();
-    //}
-
 
 }

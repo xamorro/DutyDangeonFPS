@@ -118,7 +118,7 @@ public class ShootController : MonoBehaviour
                 //Agafam es component de sa part des cos que hem impactat
                 PartsEnemics target = hit.transform.GetComponent<PartsEnemics>();
 
-                //Si sa part des cos impactat és head crida es Void public des pare de l'objecte impactat.
+                //Si sa part des cos impactat és head crida es Void public des pare de l'objecte impactat. Aqui depenguent de la zona que hem impactat, li donarem un d'any o un altre.
                 if (target.damageType == PartsEnemics.collisionType.head)
                 {
                     vidasoldat.DañoRecibido(dañoarma * 8);
@@ -135,6 +135,7 @@ public class ShootController : MonoBehaviour
                 
             }
 
+            //Si impactam a una diana, Reproduirá un sonido y destruirá la zona. Apart ens retorna municio ja que es un lloc per practicar.
             if (hit.transform.root.gameObject.CompareTag("Diana"))
             {
                 Destroy(hit.transform.gameObject);
@@ -185,6 +186,7 @@ public class ShootController : MonoBehaviour
         }
     }
 
+    //Per cridar la funcio de recargar, es pot activar quan no estás recargant
     public void HandleReload()
     {
         if (!Recargant)
@@ -232,6 +234,7 @@ public class ShootController : MonoBehaviour
 
     }
 
+    //Quan apuntam, fa un lerp cap una posicio en concret.
     public void AimIn()
     {
         if (interpolator > 1)
@@ -242,6 +245,7 @@ public class ShootController : MonoBehaviour
         LerpAim();
     }
 
+    //Quan deixam de apuntar, fa un lerp cap a la posicio inicial
     private void AimOut()
     {
         interpolator -= Time.deltaTime / aimTime;
@@ -250,6 +254,7 @@ public class ShootController : MonoBehaviour
         resetAim = interpolator > 0;
     }
 
+    //Aqui feim el lerm del canvas de vida amb un field of view
     private void LerpAim()
     {
         weapon.position = Vector3.Lerp(weaponHolder.position, aimPoint.position, interpolator);

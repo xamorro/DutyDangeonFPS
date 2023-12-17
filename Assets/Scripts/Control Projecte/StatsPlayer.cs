@@ -44,6 +44,7 @@ public class StatsPlayer : MonoBehaviour
         }
     }
 
+    //Crides d'esde una altra banda aquesta funciona per fer mal al jugador on rebrá també un temblor de camera i sortirá un canvas de sang.
     public void DañoRecibido(float cantidad)
     {
         VidaPlayer -= cantidad;
@@ -60,7 +61,7 @@ public class StatsPlayer : MonoBehaviour
         }
     }
 
-
+    //Es cridat quan mor i fa apareixer una pantalla de mort.
     private void DeathMenu()
     {
         VidaModificada?.Invoke(0);
@@ -68,6 +69,7 @@ public class StatsPlayer : MonoBehaviour
         Debug.Log("Has mort");
     }
 
+    //A cada hit q li fan al jugador, posa mes visible un canvas de sang.
     private void ChangeAlpha()
     {
         //alphaValue = alphaValue + 0.08f;

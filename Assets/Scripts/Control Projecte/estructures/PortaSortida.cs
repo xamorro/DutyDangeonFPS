@@ -22,7 +22,7 @@ public class PortaSortida : MonoBehaviour
         panelInfo = infoCanvas.GetComponentInChildren<Image>();
     }
     
-
+    //Mira si ja has matat a tots els enemics i agafat la clau. Depen del que tenguis complit, et sortirá un missatge o no. Si o tens tot, obrirás la porta
     private void OnTriggerEnter(Collider other)
     {
         contadorEnemigoZ3();
@@ -51,6 +51,7 @@ public class PortaSortida : MonoBehaviour
 
     }
 
+    //En sortir del trigger, s'activa un canvas de fi del joc i acaba.
     private void OnTriggerExit(Collider other)
     {
         if (obert == true)
@@ -80,6 +81,7 @@ public class PortaSortida : MonoBehaviour
         panelInfo.enabled = false;
     }
 
+    //Conta els enemics que tenen un script anomanat EnemigoZ3
     private void contadorEnemigoZ3()
     {
         EnemigoZ3[] enemics = FindObjectsByType<EnemigoZ3>(FindObjectsSortMode.None);

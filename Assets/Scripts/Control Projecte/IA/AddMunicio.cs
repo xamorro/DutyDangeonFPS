@@ -19,6 +19,7 @@ public class AddMunicio : MonoBehaviour
         
     }
 
+    //Si el player pasa per damunt la munició, cridam una funcio de sumar municio.
     private void OnTriggerEnter(Collider Player)
     {
         if (Player.gameObject.tag == "Player")

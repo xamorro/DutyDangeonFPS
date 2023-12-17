@@ -91,17 +91,20 @@ public class IAEnemicRaycast : MonoBehaviour
 
         if (hpsoldat > 0)
         {
+            //Mira si el soldat es un sniper o sniper de muralla.
             if (sniper || sniperMuro)
             {
+                //Si está a la muralla, feim que fagi un look at cap a noltros ja que així quan mos vulgi disparar, el raycast mos impactará, ja que sinó, sempre miraria recta y no xocaria mai desde tan alt.
                 if (sniperMuro)
                 {
                     visorPoint.LookAt(player.transform);
                 } 
+                //Tots 2 reben aquets parametres:
                     GetComponent<FieldOfView>().detectionRange = 60;
                 agent.isStopped = true;
-                //Debug.Log(vision.canSeePlayer);
-                //Debug.Log(vistPrimerPic);
                 LookTarget();
+
+                //Si veus al jugador i ets sniper dispara, si ets sniper de muro dispara posant el cap i l'arma apuntant cap al player
                 if (vision.canSeePlayer)
                 {
                     waitTimer += Time.deltaTime;
@@ -133,11 +136,10 @@ public class IAEnemicRaycast : MonoBehaviour
                 switch (state)
                 {
                     default:
+                        //Camina per unes posicions obtingudes dins una sphere
                     case State.Patroling:
                         agent.SetDestination(patrolPosition);
                         agent.speed = 2;
-                        //arma.localPosition = armaPosition;
-                        //arma.localEulerAngles = armaRotation;
 
                         if (agent.remainingDistance < 1f)
                             patrolPosition = GetPatrolPosition();
@@ -147,16 +149,19 @@ public class IAEnemicRaycast : MonoBehaviour
                         FindTarget();
                         break;
 
+                        //Si ha vist al player dins el rang de visió es quedará mirant
                     case State.ObserverTarget:
                         agent.isStopped = true;
 
                         LookTarget();
+                        //Si sobrepasa aquest rang, s'activará l'estate de perseguir al jugador.
                         if (Vector3.Distance(transform.position, target.position) <= FollowingRange)
                         {
                             agent.isStopped = false;
                             state = State.Following;
                         }
 
+                        //Si surts del rang de deteccio, tornará al punt d'inici i a patrullar.
                         if (Vector3.Distance(transform.position, target.position) > vision.detectionRange)
                         {
                             agent.isStopped = false;
@@ -165,6 +170,7 @@ public class IAEnemicRaycast : MonoBehaviour
 
                         break;
 
+                        //Et segueix i si entres dins el rang de atack, et comença a disparar
                     case State.Following:
 
                         agent.speed = 9;
@@ -189,6 +195,7 @@ public class IAEnemicRaycast : MonoBehaviour
 
                         break;
 
+                        //Si estás dins el rang atac, esperá un poc menos de 1 segons i començará a disparar.
                     case State.AtackTarget:
                         agent.isStopped = true;
                         LookTarget();
@@ -218,6 +225,7 @@ public class IAEnemicRaycast : MonoBehaviour
 
                         break;
 
+                        //Si disparam a un enemic desde molt enfora, et perseguirá fins poder atacar
                     case State.DistanceHit:
                         agent.SetDestination(posicioplayer.position);
                         agent.speed = 9;

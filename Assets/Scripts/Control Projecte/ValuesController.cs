@@ -32,6 +32,7 @@ public class ValuesController : MonoBehaviour
         StatsPlayer.VidaModificada -= UpdateVida;
     }
 
+    //Actualitzam la municio per pantalla amb un if de colors.
     private void UpdateAmmo(int ammo)
     {
         
@@ -47,6 +48,7 @@ public class ValuesController : MonoBehaviour
         }
     }
 
+    //Actualitzam la municioMaxima per pantalla amb un if de colors.
     private void MaxUpdateAmmo(int ammo)
     {
         maxMunicio.text = ammo.ToString();
@@ -65,6 +67,7 @@ public class ValuesController : MonoBehaviour
         }
     }
 
+    //Actualitzam la vida mitjançant un slider i feim un lerp per donar fluidesa.
     private void UpdateVida(float vida)
     {
         vidaJugador.text = vida.ToString();

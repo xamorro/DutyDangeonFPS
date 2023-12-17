@@ -32,7 +32,7 @@ public class Pausa : MonoBehaviour
 
     }
 
-
+    //Actives menu de pausa on paralitzes el joc i li dones un cursor visible per interactuar per dins.
     public void PauseGame()
     {
         Time.timeScale = 0.0f;
@@ -45,6 +45,7 @@ public class Pausa : MonoBehaviour
 
     }
 
+    //Lleves el menu i retornes al joc
     public void ResumeGame()
     {
         Time.timeScale = 1f;
@@ -57,6 +58,7 @@ public class Pausa : MonoBehaviour
         Debug.Log("Resume");
     }
 
+    //Per si obrim i tancam el menu de pausa amb el mateix input Escape
     public void MenuPausa()
     {
         if (isPaused)
