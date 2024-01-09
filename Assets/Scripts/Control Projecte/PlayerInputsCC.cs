@@ -1,13 +1,29 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInputHandlerCC : MonoBehaviour
 {
     private PlayerMovement movementController;
-    //private LookController lookController;
+    private MouseLook mouseLook;
     private ShootController shootController;
     private Pausa pause;
 
+    private PlayerController playerControls;
 
+    private void Awake()
+    {
+        mouseLook = GetComponentInChildren<MouseLook>();
+    }
+
+    private void OnEnable()
+    {
+        playerControls = new PlayerController();
+        playerControls.HumanControls.Enable();
+
+        playerControls.HumanControls.Camera.performed += CameraMove;
+        playerControls.HumanControls.Camera.canceled += CameraMove;
+
+    }
     private void Start()
     {
         movementController = GetComponent<PlayerMovement>();
@@ -58,5 +74,29 @@ public class PlayerInputHandlerCC : MonoBehaviour
         float xMovement = Input.GetAxis("Horizontal");
         float zMovement = Input.GetAxis("Vertical");
         movementController?.SetMoveDirection(new Vector3(xMovement, 0, zMovement));
+    }
+
+    private void CameraMove(InputAction.CallbackContext context)
+    {
+        Vector2 inputVector = context.ReadValue<Vector2>();
+
+        if (context.control.device is Gamepad)
+        {
+            inputVector *= Time.deltaTime;
+        }
+
+        mouseLook.SetCameraMoveDirection(new Vector2(inputVector.x, inputVector.y));
+
+
+
+
+        //throw new NotImplementedException();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.HumanControls.Camera.performed -= CameraMove;
+        playerControls.HumanControls.Camera.canceled -= CameraMove;
+        playerControls.HumanControls.Disable();
     }
 }
